@@ -39,8 +39,8 @@ const Home = () => {
                 {heading.map((h) => (
                     <div key={h.id} className='flex flex-col justify-center gap-3'>
                         <img src={h.logo} className='w-[24px] h-[28px] object-contain' alt={h.logo} />
-                        <h4 className=''>{h.title}</h4>
-                        <p className='md:max-w-[450px] w-auto h-auto'>{h.description}</p>
+                        <h4 className='font-medium'>{h.title}</h4>
+                        <p className='md:max-w-[450px] w-auto h-auto text-third'>{h.description}</p>
                     </div>
                 ))}
             </div>
