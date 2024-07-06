@@ -6,8 +6,9 @@ const Home = () => {
   return (
     <section id="home" className='flex w-full justify-center items-center flex-col gap-y-20'>
         <div className='flex-col flex flex-1 items-center justify-center w-full py-10 mt-40 '>
-            <h1 className='font-bold text-6xl mb-5'>Landing page title</h1>
-            <p className='mb-5 description'>And a subheading describing your site, too</p>
+            <h1 className='font-bold text-6xl mb-5'>Welcome to iNTFibeR</h1>
+            <p className='mb-5 description max-w-[600px] text-center'>iNTFiber is an ISP service provider in the Philippines that provides the fastest internet in the country.
+            </p>
             <Button link="#" label="Get Started!"></Button>
         </div>
 
