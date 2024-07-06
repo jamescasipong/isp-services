@@ -10,6 +10,7 @@ module.exports = {
         secondary: "#000000",
         third: "#828282",
         button: "#8D2424",
+        bg: "#F7F7F7",
         dimWhite: "rgba(255, 255, 255, 0.7)",
         dimBlue: "rgba(9, 151, 124, 0.1)",
       },
