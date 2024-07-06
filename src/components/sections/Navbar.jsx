@@ -4,7 +4,7 @@ import {navLinks} from "../../constants";
 
 const Navbar = () => {
   return (
-    <section id='navbar' className='flex justify-between w-full py-6 items-center px-5'> 
+    <section id='navbar' className='flex justify-between w-full py-6 items-center'> 
         <div>
             <h2 className='text-black font-medium text-[24px] sm:px-0'>iNTFibeR</h2>
         </div>
