@@ -14,8 +14,14 @@ const Navbar = () => {
             (
                 <ul key={nL.id} className='flex items-center'>
                     <li className={`text-black cursor-pointer font-medium navtext hover:text-orange-500 ${nL.id}`}><a href={`#${nL.id} `}>{nL.title}</a></li>
+                    
                 </ul>
+                
             ))}
+
+            <button className='button text-white text-[18px]'>Sign Up</button>
+
+            
         </div>
     </section>
   )

@@ -38,7 +38,11 @@ body {
   padding-right: 20px;
   border-radius: 0.375em;
   background-color: #8D2424;
+  transition: background-color 0.10s;
+}
 
+.button:hover {
+  background-color: #C04C4C;
 }
 
 .sign-up {
