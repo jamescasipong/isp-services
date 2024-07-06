@@ -13,7 +13,7 @@ function App() {
       </div>
 
       <div className="flex justify-center items-start">
-        <div className="xl:max-w-[1280px] w-full  md:px-4 px-4">
+        <div className="xl:max-w-[1280px] w-full  md:px-4 px-8">
             <Home></Home>
         </div>
       </div>
