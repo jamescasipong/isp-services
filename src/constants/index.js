@@ -21,22 +21,22 @@ export const navLinks = [
 
 export const heading = [
     {
-        logo: {avatar},
+        logo: avatar,
         title: "Subheading",
         description: "Body text for whatever you’d like to say. Add main takeaway points, quotes, anecdotes, or even a very very short story."
     },
     {
-        logo: {globe},
+        logo: globe,
         title: "Subheading",
         description: "Body text for whatever you’d like to say. Add main takeaway points, quotes, anecdotes, or even a very very short story."
     },
     {
-        logo: {calendar},
+        logo: calendar,
         title: "Subheading",
         description: "Body text for whatever you’d like to say. Add main takeaway points, quotes, anecdotes, or even a very very short story."
     },
     {
-        logo: {lock},
+        logo: lock,
         title: "Subheading",
         description: "Body text for whatever you’d like to say. Add main takeaway points, quotes, anecdotes, or even a very very short story."
     },

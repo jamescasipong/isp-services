@@ -1,6 +1,7 @@
 import React from 'react'
 import Button from '../Button';
 import {image} from '../../assets/index.js';
+import {heading} from '../../constants/index.js';
 
 const Home = () => {
   return (
@@ -14,7 +15,7 @@ const Home = () => {
 
         <div className='flex w-full flex-row flex-wrap-reverse sm:gap-[20px] gap-0'>
             <div className='flex-1 flex justify-center items-start flex-col'>
-                <h4 className='font-bold text-[40px]'>Heading</h4>
+                <h4 className='font-bold text-[40px] md:mt-0 mt-5'>Heading</h4>
                 <p className='text-[24px] text-third mb-5'>A subheading for this section, as long or as <br className='md:block hidden'/> short as you like</p>
                 <Button link="#" label="Button"></Button>
             </div>
@@ -23,10 +24,25 @@ const Home = () => {
 
         <div className='flex w-full flex-row flex-wrap sm:gap-[20px] gap-0'>
             <img className='flex-1 w-[100%] h-[100%]' src={image} alt="" />
-            <div className='flex-1 flex justify-center items-start flex-col md:ml-[100px] ml-0'>
+            <div className='flex-1 flex justify-center items-start flex-col md:ml-[100px] ml-0 md:mt-0 mt-5'>
                 <h4 className='font-bold text-[40px]'>Heading</h4>
                 <p className='text-[24px] text-third mb-5'>A subheading for this section, as long or as short as you like</p>
                 <Button link="#" label="Button"></Button>
+            </div>
+        </div>
+
+        <div className='w-full flex flex-col gap-10'>
+            <div>
+                <h2 className='font-semibold text-[40px]'>Heading</h2>
+            </div>
+            <div className='grid sm:grid-cols-2 grid-cols-1 md:gap-x-40 gap-x-0 sm:gap-y-0 gap-y-10 w-full'>
+                {heading.map((h) => (
+                    <div className='flex flex-col justify-center gap-3'>
+                        <img src={h.logo} className='w-[24px]  h-[28px] object-contain' alt="" />
+                        <h4 className=''>{h.title}</h4>
+                        <p className='max-w-[450px] h-auto text-justify'>{h.description}</p>
+                    </div>
+                ))}
             </div>
         </div>
     </section>
