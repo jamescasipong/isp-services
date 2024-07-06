@@ -31,16 +31,16 @@ const Home = () => {
             </div>
         </div>
 
-        <div className='w-full flex flex-col gap-10'>
+        <div className='w-full flex flex-col gap-5'>
             <div>
                 <h2 className='font-semibold text-[40px]'>Heading</h2>
             </div>
-            <div className='grid sm:grid-cols-2 grid-cols-1 md:gap-x-40 gap-x-0 sm:gap-y-0 gap-y-10 w-full'>
+            <div className='grid sm:grid-cols-2 grid-cols-1 md:gap-x-40 gap-x-12 sm:gap-y-10 gap-y-10 w-full'>
                 {heading.map((h) => (
                     <div className='flex flex-col justify-center gap-3'>
                         <img src={h.logo} className='w-[24px]  h-[28px] object-contain' alt="" />
                         <h4 className=''>{h.title}</h4>
-                        <p className='max-w-[450px] h-auto text-justify'>{h.description}</p>
+                        <p className='md:max-w-[450px] w-auto h-auto'>{h.description}</p>
                     </div>
                 ))}
             </div>
