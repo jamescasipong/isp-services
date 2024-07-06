@@ -1,5 +1,6 @@
 import Navbar from './components/sections/Navbar';
 import Home from './components/sections/Home';
+import Heading from './components/sections/Heading';
 
 function App() {
 
@@ -14,6 +15,12 @@ function App() {
       <div className="flex justify-center items-start">
         <div className="xl:max-w-[1280px] w-full  md:px-4 px-4">
             <Home></Home>
+        </div>
+      </div>
+
+      <div className="flex justify-center items-start bg-bg mt-20">
+        <div className="xl:max-w-[1280px] w-full  md:px-4 px-4">
+            <Heading></Heading>
         </div>
       </div>
     </div>
