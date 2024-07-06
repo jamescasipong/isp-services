@@ -16,7 +16,7 @@ const Home = () => {
         <div className='flex w-full flex-row flex-wrap-reverse sm:gap-[20px] gap-0'>
             <div className='flex-1 flex justify-center items-start flex-col'>
                 <h4 className='font-bold text-[40px] md:mt-0 mt-5'>Heading</h4>
-                <p className='text-[24px] text-third mb-5'>A subheading for this section, as long or as <br className='md:block hidden'/> short as you like</p>
+                <p className='sm:text-[24px] text-[16px] text-third mb-5'>A subheading for this section, as long or as <br className='md:block hidden'/> short as you like</p>
                 <Button link="#" label="Button"></Button>
             </div>
             <img className='flex-1 w-[100%] h-[100%]' src={image} alt="" />
@@ -26,7 +26,7 @@ const Home = () => {
             <img className='flex-1 w-[100%] h-[100%]' src={image} alt="" />
             <div className='flex-1 flex justify-center items-start flex-col md:ml-[100px] ml-0 md:mt-0 mt-5'>
                 <h4 className='font-bold text-[40px]'>Heading</h4>
-                <p className='text-[24px] text-third mb-5'>A subheading for this section, as long or as short as you like</p>
+                <p className='sm:text-[24px] text-[16px] text-third mb-5'>A subheading for this section, as long or as short as you like</p>
                 <Button link="#" label="Button"></Button>
             </div>
         </div>
