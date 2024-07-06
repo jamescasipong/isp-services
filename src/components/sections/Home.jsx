@@ -9,7 +9,7 @@ const Home = () => {
             <h1 className='font-bold text-6xl mb-5'>Welcome to iNTFibeR</h1>
             <p className='mb-5 description max-w-[600px] text-center'>iNTFiber is an ISP service provider in the Philippines that provides one of the fastest internet in the country.
             </p>
-            <Button link="#" label="Get Started!"></Button>
+            <Button link="#" label="Join Now!"></Button>
         </div>
 
         <div className='flex w-full flex-row flex-wrap-reverse sm:gap-[20px] gap-0'>
