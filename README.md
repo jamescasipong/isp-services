@@ -27,4 +27,4 @@ This repository hosts the codebase for our ISP (Internet Service Provider) servi
 Contributions are welcome! Please fork this repository and submit pull requests to propose changes or improvements.
 
 ## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
