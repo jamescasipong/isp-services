@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <section id="home" className='flex w-full justify-center items-center flex-col gap-y-20'>
         <div className='flex-col flex flex-1 items-center justify-center w-full py-10 mt-40 '>
-            <h1 className='font-bold text-6xl mb-5'>Welcome to iNTFibeR</h1>
+            <h1 className='font-bold text-6xl mb-5 sm:text-start text-center '>Welcome to iNTFibeR</h1>
             <p className='mb-5 description max-w-[600px] text-center'>iNTFiber is an ISP service provider in the Philippines that provides one of the fastest internet in the country.
             </p>
             <Button link="#" label="Join Now!"></Button>
@@ -31,14 +31,14 @@ const Home = () => {
             </div>
         </div>
 
-        <div className='w-full flex flex-col gap-5'>
+        <div className='w-full flex flex-col gap-5 px-5 py-5'>
             <div>
                 <h2 className='font-semibold text-[40px]'>Heading</h2>
             </div>
             <div className='grid sm:grid-cols-2 grid-cols-1 md:gap-x-40 gap-x-12 sm:gap-y-10 gap-y-10 w-full'>
                 {heading.map((h) => (
                     <div className='flex flex-col justify-center gap-3'>
-                        <img src={h.logo} className='w-[24px]  h-[28px] object-contain' alt="" />
+                        <img src={h.logo} className='w-[24px]  h-[28px] object-contain' alt={h.logo} />
                         <h4 className=''>{h.title}</h4>
                         <p className='md:max-w-[450px] w-auto h-auto'>{h.description}</p>
                     </div>
