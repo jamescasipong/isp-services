@@ -6,7 +6,7 @@ import {heading} from '../../constants/index.js';
 const Home = () => {
   return (
     <section id="home" className='flex w-full justify-center items-center flex-col gap-y-20'>
-        <div className='flex-col flex flex-1 items-center justify-center w-full py-10 sm:mt-40 mt-32'>
+        <div className='flex-col flex flex-1 items-center justify-center w-full py-10 sm:mt-40 mt-28'>
             <h1 className='font-bold text-6xl mb-5 sm:text-start text-center '>Welcome to iNTFibeR</h1>
             <p className='mb-5 description max-w-[600px] text-center'>iNTFiber is an ISP service provider in the Philippines that provides one of the fastest internet in the country.
             </p>
