@@ -39,7 +39,7 @@ export const heading = [
         description: "Body text for whatever you’d like to say. Add main takeaway points, quotes, anecdotes, or even a very very short story."
     },
     {
-      id: "4",
+        id: "4",
         logo: lock,
         title: "Subheading",
         description: "Body text for whatever you’d like to say. Add main takeaway points, quotes, anecdotes, or even a very very short story."
