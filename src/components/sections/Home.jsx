@@ -37,8 +37,8 @@ const Home = () => {
             </div>
             <div className='grid sm:grid-cols-2 grid-cols-1 md:gap-x-40 gap-x-12 sm:gap-y-10 gap-y-10 w-full'>
                 {heading.map((h) => (
-                    <div className='flex flex-col justify-center gap-3'>
-                        <img src={h.logo} className='w-[24px]  h-[28px] object-contain' alt={h.logo} />
+                    <div key={h.id} className='flex flex-col justify-center gap-3'>
+                        <img src={h.logo} className='w-[24px] h-[28px] object-contain' alt={h.logo} />
                         <h4 className=''>{h.title}</h4>
                         <p className='md:max-w-[450px] w-auto h-auto'>{h.description}</p>
                     </div>
