@@ -1,7 +1,7 @@
-import Navbar from './components/sections/Navbar';
-import Home from './components/sections/Home';
-import Heading from './components/sections/Heading';
-import Footer from './components/sections/Footer';
+import Navbar from '../components/sections/Navbar';
+import Home from '../components/sections/Home';
+import Heading from '../components/sections/Heading';
+import Footer from '../components/sections/Footer';
 
 function App() {
 
