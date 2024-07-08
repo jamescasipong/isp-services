@@ -4,7 +4,7 @@ import {footer} from "../../constants/index.js";
 
 const Footer = () => {
   return (
-    <footer className='flex w-full sm:flex-row flex-col justify-center items-start py-16 px-10'>
+    <footer className='flex w-full sm:flex-row flex-col justify-center items-start py-16 sm:px-10 px-2'>
         <div className='flex-1 flex flex-col gap-20'>
             <h3>Site Name</h3>
 
