@@ -8,11 +8,11 @@ const Footer = () => {
         <div className='flex-1 flex flex-col gap-20'>
             <h3>Site Name</h3>
 
-            <div className='flex-1 flex flex-row gap-5'>
+            <div className='flex-1 flex flex-row gap-5 items-center'>
                 <a href="#"><img src={facebook} alt="facebook" className='object-contain'/></a>
                 <a href="#"><img src={instagram} alt="instagram" className='object-contain' /></a>
-                <a href="#"><img src={linkedin} alt="linkedin" className='object-contain' /></a>
                 <a href="#"><img src={youtube} alt="youtube" className='object-contain' /></a>
+                <a href="#"><img src={linkedin} alt="linkedin" className='object-contain' /></a>
             </div>
         </div>
 
