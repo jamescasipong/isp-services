@@ -9,10 +9,10 @@ const Footer = () => {
             <h3>Site Name</h3>
 
             <div className='flex-1 flex flex-row gap-5'>
-                <img src={facebook} className='object-contain' alt="" />
-                <img src={instagram} className='object-contain' alt="" />
-                <img src={linkedin} className='object-contain' alt="" />
-                <img src={youtube} className='object-contain' alt="" />
+                <img src={facebook} alt="facebook" className='object-contain'/>
+                <img src={instagram} alt="instagram" className='object-contain' />
+                <img src={linkedin} alt="linkedin" className='object-contain' />
+                <img src={youtube} alt="youtube" className='object-contain' />
             </div>
         </div>
 
