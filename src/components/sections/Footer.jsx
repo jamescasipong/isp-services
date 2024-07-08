@@ -18,10 +18,10 @@ const Footer = () => {
 
         <div className='flex-1 flex-wrap flex justify-between w-full md:mr-36 m-0 sm:mt-0 mt-3'>
             {footer.map((f) => (
-                <div key={f.id} className='flex flex-col'>
+                <div key={f.key} className='flex flex-col'>
                    <h4 className='sm:mt-0 mt-5 font-medium' >{f.title}</h4>
 
-                   <a href=""><ul className='flex flex-col gap-2 mt-2'>
+                   <a href={`#${f.id}`}><ul className='flex flex-col gap-2 mt-2'>
                       {f.links.map((link) => (
                         <li className='text-third' key={link.id}><a href={link.links}>{link.name}</a></li>
                       ))}
