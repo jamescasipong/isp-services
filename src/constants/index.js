@@ -46,7 +46,8 @@ export const heading = [
 
 export const footer = [
   {
-    id: "1",
+    key: "1",
+    id: "home",
     title: "Home",
     links: [
       {
@@ -67,7 +68,8 @@ export const footer = [
     ]
   },
   {
-    id: "2",
+    key: "2",
+    id: "features",
     title: "Features",
     links: [
       {
@@ -88,7 +90,8 @@ export const footer = [
     ]
   },
   {
-    id: "3",
+    key: "3",
+    id: "contact",
     title: "Contact",
     links: [
       {

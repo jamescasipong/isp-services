@@ -21,11 +21,11 @@ const Footer = () => {
                 <div key={f.id} className='flex flex-col'>
                    <h4 className='sm:mt-0 mt-5 font-medium' >{f.title}</h4>
 
-                   <ul className='flex flex-col gap-2 mt-2'>
+                   <a href=""><ul className='flex flex-col gap-2 mt-2'>
                       {f.links.map((link) => (
                         <li className='text-third' key={link.id}><a href={link.links}>{link.name}</a></li>
                       ))}
-                   </ul>
+                   </ul></a>
                 </div>
             ))}
         </div>
