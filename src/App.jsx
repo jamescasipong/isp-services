@@ -1,6 +1,7 @@
 import Navbar from './components/sections/Navbar';
 import Home from './components/sections/Home';
 import Heading from './components/sections/Heading';
+import Footer from './components/sections/Footer';
 
 function App() {
 
@@ -29,7 +30,7 @@ function App() {
 
         <div className="flex justify-center items-star">
           <div className="xl:max-w-[1280px] w-full  md:px-4 px-4">
-              
+              <Footer></Footer>
           </div>
         </div>
       </div>

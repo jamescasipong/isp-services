@@ -42,3 +42,70 @@ export const heading = [
     },
     
 ]
+
+
+export const footer = [
+  {
+    id: "1",
+    title: "Home",
+    links: [
+      {
+        id: "1",
+        name: "Page",
+        links: "#",
+      },
+      {
+        id: "2",
+        name: "Page",
+        links: "#",
+      },
+      {
+        id: "3",
+        name: "Page",
+        links: "#",
+      },
+    ]
+  },
+  {
+    id: "2",
+    title: "Features",
+    links: [
+      {
+        id: "1",
+        name: "Page",
+        links: "#",
+      },
+      {
+        id: "2",
+        name: "Page",
+        links: "#",
+      },
+      {
+        id: "3",
+        name: "Page",
+        links: "#",
+      },
+    ]
+  },
+  {
+    id: "3",
+    title: "Contact",
+    links: [
+      {
+        id: "1",
+        name: "Page",
+        links: "#",
+      },
+      {
+        id: "2",
+        name: "Page",
+        links: "#",
+      },
+      {
+        id: "3",
+        name: "Page",
+        links: "#",
+      },
+    ]
+  },
+];
