@@ -4,15 +4,15 @@ import {footer} from "../../constants/index.js";
 
 const Footer = () => {
   return (
-    <footer className='flex w-full md:flex-row flex-col justify-center items-start py-16 px-10'>
+    <footer className='flex w-full sm:flex-row flex-col justify-center items-start py-16 px-10'>
         <div className='flex-1 flex flex-col gap-20'>
             <h3>Site Name</h3>
 
             <div className='flex-1 flex flex-row gap-5'>
-                <img src={facebook} alt="facebook" className='object-contain'/>
-                <img src={instagram} alt="instagram" className='object-contain' />
-                <img src={linkedin} alt="linkedin" className='object-contain' />
-                <img src={youtube} alt="youtube" className='object-contain' />
+                <a href="#"><img src={facebook} alt="facebook" className='object-contain'/></a>
+                <a href="#"><img src={instagram} alt="instagram" className='object-contain' /></a>
+                <a href="#"><img src={linkedin} alt="linkedin" className='object-contain' /></a>
+                <a href="#"><img src={youtube} alt="youtube" className='object-contain' /></a>
             </div>
         </div>
 
