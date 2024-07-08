@@ -3,14 +3,17 @@ import {avatar, globe, calendar, lock} from "../assets/index.js";
 export const navLinks = [
     {
       id: "home",
+      link: "../App.jsx",
       title: "Home",
     },
     {
       id: "features",
+      link: "../App.jsx",
       title: "Features",
     },
     {
       id: "contact",
+      link: "../App.jsx",
       title: "Contact",
     },
   ];

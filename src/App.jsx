@@ -27,13 +27,14 @@ function App() {
               <Heading></Heading>
           </div>
         </div>
+        </div>
 
         <div className="flex justify-center items-star">
           <div className="xl:max-w-[1280px] w-full  md:px-4 px-4">
               <Footer></Footer>
           </div>
         </div>
-      </div>
+      
     </div>
   )
 }
