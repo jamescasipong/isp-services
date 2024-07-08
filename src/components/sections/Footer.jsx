@@ -16,7 +16,7 @@ const Footer = () => {
             </div>
         </div>
 
-        <div className='flex-1 flex-wrap flex justify-between w-full md:mr-36 m-0 md:mt-0 mt-10'>
+        <div className='flex-1 flex-wrap flex justify-between w-full md:mr-36 m-0 sm:mt-0 mt-10'>
             {footer.map((f) => (
                 <div key={f.id} className='flex flex-col'>
                    <h4 className='sm:mt-0 mt-5 font-medium' >{f.title}</h4>
