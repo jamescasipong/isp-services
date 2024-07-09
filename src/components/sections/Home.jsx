@@ -8,7 +8,8 @@ const Home = () => {
     <section id="home" className='flex w-full justify-center items-center flex-col gap-y-20'>
         <div className='flex-col flex flex-1 items-center justify-center w-full py-10 sm:mt-40 mt-10'>
             <h1 className='font-bold sm:text-6xl text-[40px] mb-5 sm:text-start text-center '>Welcome to OptiNet</h1>
-            <p className='mb-5 sm:max-w-[650px] sm:text-center text-justify sm:text-[24px] text-[18px] text-third'>OptiNet is an Internet service provider (ISP) company in the Philippines that provides one of the fastest internet in the country.
+            <p className='mb-5 sm:max-w-[650px] sm:text-center text-justify sm:text-[24px] text-[18px] text-third'>
+            Optimize your online experience with OptiNet's lightning-fast internet services.
             </p>
             <Button link="#" label="Join Now!"></Button>
         </div>

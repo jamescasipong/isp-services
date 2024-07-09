@@ -11,7 +11,7 @@ function App() {
       
       <div className="flex justify-center items-center md:px-4 px-4 w-full">
         <div className='md:fixed initial flex  justify-center items-center bg-primary sm:shadow-sm drop-shadow-none w-full h-[85px] top-0'>
-        <div className="xl:max-w-[1280px] w-full md:fixed initial top-0 ">
+        <div className="xl:max-w-[1280px] w-full md:fixed initial top-0  px-4">
             <Navbar></Navbar>
         </div>
         </div>
