@@ -2,6 +2,7 @@ import React from 'react'
 import Home from '../../components/sections/Home';
 import Heading from '../../components/sections/Heading';
 import Footer from '../../components/sections/Footer';
+import Contact from "../Contact/Contact";
 
 const HomeMain = () => {
   return (
