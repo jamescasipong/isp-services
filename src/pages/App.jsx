@@ -5,6 +5,7 @@ import HomeMain from "./HomeMain/HomeMain";
 import Contact from "./Contact/Contact";
 import Navbar from "../components/sections/Navbar";
 import Features from "./Features/Features";
+import Footer from "../components/sections/Footer";
 
 
 function useLocations(name){
@@ -38,6 +39,13 @@ function App() {
         </Routes>
       </BrowserRouter>
       </div>
+
+
+      <div className="flex justify-center items-star">
+          <div className="xl:max-w-[1280px] w-full  md:px-4 px-4">
+              <Footer></Footer>
+          </div>
+        </div>
     </div>
 
   )

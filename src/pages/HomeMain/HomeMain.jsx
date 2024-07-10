@@ -2,7 +2,7 @@ import React from 'react'
 import Home from '../../components/sections/Home';
 import Heading from '../../components/sections/Heading';
 import Footer from '../../components/sections/Footer';
-import Contact from "../Contact/Contact";
+
 
 const HomeMain = () => {
   return (
@@ -25,11 +25,7 @@ const HomeMain = () => {
         </div>
         </div>
 
-        <div className="flex justify-center items-star">
-          <div className="xl:max-w-[1280px] w-full  md:px-4 px-4">
-              <Footer></Footer>
-          </div>
-        </div>
+        
       
     </div>
   )

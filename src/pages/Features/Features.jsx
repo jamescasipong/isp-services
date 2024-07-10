@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from '../../components/FeatureSections/Header';
+import {hero} from "../../assets/index";
 
 
 const Features = () => {
