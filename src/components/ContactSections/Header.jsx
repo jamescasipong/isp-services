@@ -1,6 +1,7 @@
 import React from 'react'
 import {Switch} from "antd";
-
+import {plans} from "../../constants";
+import Button from '../Button';
 
 
 const Header = () => {
@@ -15,6 +16,25 @@ const Header = () => {
         </p>
 
             <Switch></Switch>
+
+            <div className='w-full flex flex-row gap-10 justify-center items-center mt-10 shadow-sm p-10'>
+                {plans.map((p) => (
+                    <div key={p.id}>
+                        <p>{p.name}</p>
+                        <div className='flex flex-row gap-2'>
+                            <h1>{p.prices}</h1>
+                            <p>{p.deadline}</p>
+                        </div>
+                        
+                        <ul className=''>
+                            {p.features.map((f) => (
+                                <li>{f.f1}</li>
+                            ))}
+                        </ul>
+                        <Button link="" label="sd"></Button>
+                    </div>
+                ))}
+            </div>
         
     </div>
   )
