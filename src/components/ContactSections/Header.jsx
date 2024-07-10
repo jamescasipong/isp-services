@@ -28,7 +28,10 @@ const Header = () => {
                         
                         <ul className=''>
                             {p.features.map((f) => (
-                                <li>{f.f1}</li>
+                                <li key={f.id}>{f.f1}<br />
+                                {f.f2}<br />
+                                {f.f3}<br />
+                                {f.f4}<br /></li>
                             ))}
                         </ul>
                         <Button link="" label="sd"></Button>
