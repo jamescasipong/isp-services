@@ -17,9 +17,9 @@ const Header = () => {
 
             <Switch></Switch>
 
-            <div className='w-full flex sm:flex-row flex-col gap-10 justify-center items-center mt-10 sm:p-10 p-2'>
+            <div className='w-full flex sm:flex-row flex-col gap-10 justify-center items-center my-10 md:p-10 p-0'>
                 {plans.map((p) => (
-                    <div className='shadow-2xl p-10 rounded-md flex-1 flex flex-col w-full' key={p.id}>
+                    <div className='shadow-2xl md:p-10 p-7 rounded-md flex flex-col w-full' key={p.id}>
                         <p>{p.name}</p>
                         <div className='flex items-center justify-start relative'>
                             <h1 className='font-semibold text-[40px]'>{p.prices}</h1>
