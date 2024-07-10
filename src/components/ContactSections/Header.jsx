@@ -17,24 +17,22 @@ const Header = () => {
 
             <Switch></Switch>
 
-            <div className='w-full flex flex-row gap-10 justify-center items-center mt-10 p-10'>
+            <div className='w-full flex sm:flex-row flex-col gap-10 justify-center items-center mt-10 sm:p-10 p-2'>
                 {plans.map((p) => (
-                    <div className='shadow-2xl p-10 rounded-md flex-1 flex flex-col' key={p.id}>
+                    <div className='shadow-2xl p-10 rounded-md flex-1 flex flex-col w-full' key={p.id}>
                         <p>{p.name}</p>
-                        <div className='flex flex-row gap-2'>
-                            <h1>{p.prices}</h1>
-                            <p>{p.deadline}</p>
+                        <div className='flex items-center justify-start relative'>
+                            <h1 className='font-semibold text-[40px]'>{p.prices}</h1>
+                            <p className='p-[16px] font-medium top-0'>{p.deadline}</p>
                         </div>
                         
-                        <ul className=''>
-                            {p.features.map((f) => (
-                                <li key={f.id}>{f.f1}<br />
-                                {f.f2}<br />
-                                {f.f3}<br />
-                                {f.f4}<br /></li>
-                            ))}
+                        <ul className='list-disc px-10 my-4'>
+                            <li>{p.f1}</li>
+                            <li>{p.f2}</li>
+                            <li>{p.f3}</li>
+                            <li>{p.f4}</li>
                         </ul>
-                        <Button className='w-full' link="" label="sd"></Button>
+                        <Button className='w-full' link="" label="Apply Now!"></Button>
                     </div>
                 ))}
             </div>

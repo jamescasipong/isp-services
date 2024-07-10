@@ -120,26 +120,20 @@ export const plans =
     name: "Plan 1",
     prices: "$5",
     deadline: "per month",
-    features: [{
-      key: "1",
-      f1: "Feature",
+    f1: "Feature",
       f2: "Feature",
       f3: "Feature",
       f4: "Feature",
-  }]
   },
   {
     id: "2",
     name: "Plan 2",
     prices: "$5",
     deadline: "per month",
-    features: [{
-    key: "2",
-      f1: "Feature",
+    f1: "Feature",
       f2: "Feature",
       f3: "Feature",
       f4: "Feature",
-  }]
   },
 
   {
@@ -147,12 +141,9 @@ export const plans =
     name: "Plan 3",
     prices: "$5",
     deadline: "per month",
-    features: [{
-      key: "3",
-      f1: "Feature",
+    f1: "Feature",
       f2: "Feature",
       f3: "Feature",
       f4: "Feature",
-  }]
   },
 ];
