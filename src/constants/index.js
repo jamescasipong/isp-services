@@ -112,3 +112,44 @@ export const footer = [
     ]
   },
 ];
+
+export const plans =
+[
+  {
+    id: "1",
+    name: "Plan 1",
+    prices: "$5",
+    deadline: "per month",
+    features: {
+      feature1: "Feature",
+      feature2: "Feature",
+      feature3: "Feature",
+      feature4: "Feature",
+    }
+  },
+  {
+    id: "2",
+    name: "Plan 2",
+    prices: "$5",
+    deadline: "per month",
+    features: {
+      feature1: "Feature",
+      feature2: "Feature",
+      feature3: "Feature",
+      feature4: "Feature",
+    }
+  },
+
+  {
+    id: "3",
+    name: "Plan 3",
+    prices: "$5",
+    deadline: "per month",
+    features: {
+      feature1: "Feature",
+      feature2: "Feature",
+      feature3: "Feature",
+      feature4: "Feature",
+    }
+  },
+];
