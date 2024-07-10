@@ -17,9 +17,9 @@ const Header = () => {
 
             <Switch></Switch>
 
-            <div className='w-full flex flex-row gap-10 justify-center items-center mt-10 shadow-sm p-10'>
+            <div className='w-full flex flex-row gap-10 justify-center items-center mt-10 p-10'>
                 {plans.map((p) => (
-                    <div key={p.id}>
+                    <div className='shadow-2xl p-10 rounded-md flex-1 flex flex-col' key={p.id}>
                         <p>{p.name}</p>
                         <div className='flex flex-row gap-2'>
                             <h1>{p.prices}</h1>
@@ -34,7 +34,7 @@ const Header = () => {
                                 {f.f4}<br /></li>
                             ))}
                         </ul>
-                        <Button link="" label="sd"></Button>
+                        <Button className='w-full' link="" label="sd"></Button>
                     </div>
                 ))}
             </div>
