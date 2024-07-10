@@ -1,23 +1,10 @@
-import Header from '../../components/ContactSections/Header';
 
 const Contact = () => {
   // Define ToggleButton inside Contact component
 
 
 
-  return (
-    <div className="bg-primary w-full overflow-hidden">
-      <div className="block">
-        <div className="flex justify-center items-start">
-          <div className="xl:max-w-[1280px] w-full md:px-4 px-8">
-            <Header />
-          </div>
-        </div>
-
-        
-      </div>
-    </div>
-  );
-};
+  return <></>
+}
 
 export default Contact;

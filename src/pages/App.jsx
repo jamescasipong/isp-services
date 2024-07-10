@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomeMain from "./HomeMain/HomeMain";
 import Contact from "./Contact/Contact";
 import Navbar from "../components/sections/Navbar";
+import Features from "./Features/Features";
  
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index element={<HomeMain></HomeMain>}></Route>
-          <Route path="/features" element={<></>}></Route>
+          <Route path="/features" element={<Features></Features>}></Route>
           <Route path="/contact" element={<Contact></Contact>}></Route>
         </Routes>
       </BrowserRouter>
