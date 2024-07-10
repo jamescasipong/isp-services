@@ -2,7 +2,7 @@ import {avatar, globe, calendar, lock} from "../assets/index.js";
 
 export const navLinks = [
     {
-      id: "home",
+      id: "/",
       title: "Home",
     },
     {

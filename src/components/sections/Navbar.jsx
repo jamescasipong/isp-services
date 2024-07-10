@@ -16,7 +16,7 @@ const Navbar = () => {
             {navLinks.map((nL) =>
             (
                 <ul key={nL.id} className='flex items-center'>
-                    <li className={`text-black cursor-pointer font-medium navtext hover:text-orange-500 ${nL.id}`}><a href={`#${nL.id} `}>{nL.title}</a></li>
+                    <li className={`text-black cursor-pointer font-medium navtext hover:text-orange-500 ${nL.id}`}><a href={`${nL.id} `}>{nL.title}</a></li>
                 </ul>
                 
             ))}
@@ -25,6 +25,7 @@ const Navbar = () => {
 
             
         </div>
+        
     </section>
 
   )
