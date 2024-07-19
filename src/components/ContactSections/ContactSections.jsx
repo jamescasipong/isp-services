@@ -31,7 +31,7 @@ const ContactSections = () => {
   };
 
   return (
-    <div className="flex ss:flex-row flex-col-reverse w-full ss:items-start items-center justify-center mt-40 gap-5">
+    <div className="flex ss:flex-row flex-col-reverse w-full ss:items-start items-center justify-center sm:mt-40 mt-10 gap-5">
       <div className="flex-1 flex-col justify-start items-start">
         <h1 className="font-bold sm:text-6xl text-[40px] mb-5 mt-0">
           Contact Us
