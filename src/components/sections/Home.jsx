@@ -29,7 +29,7 @@ const Home = () => {
             A subheading for this section, as long or as{" "}
             <br className="md:block hidden" /> short as you like
           </p>
-          <Button link="#" label="Button"></Button>
+          <Button link="#" label="Check Out"></Button>
         </div>
         <img className="flex-1 w-[100%] h-[100%]" src={image} alt="" />
       </div>
@@ -41,7 +41,7 @@ const Home = () => {
           <p className="sm:text-[24px] text-[16px] text-third mb-5">
             A subheading for this section, as long or as short as you like
           </p>
-          <Button link="#" label="Button"></Button>
+          <Button link="#" label="Check Out"></Button>
         </div>
       </div>
 
