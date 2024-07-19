@@ -4,6 +4,13 @@ import React, { useState } from "react";
 const Navbar = () => {
   const [isToggle, setToggle] = useState(false);
 
+  const SetToggle = () => {
+    setToggle(!isToggle);
+
+    const element = document.getElementById("navmain");
+    element.classList.remove("top-[70px]"); // Remove mystyle class from DIV
+    element.classList.add("top-[-600px]");
+  };
   return (
     <section
       id="navbar"
@@ -35,12 +42,13 @@ const Navbar = () => {
             className={`${
               !isToggle ? "fa-solid fa-bars" : "fa-solid fa-x"
             } cursor-pointer`}
-            onClick={() => setToggle(!isToggle)}
+            onClick={SetToggle}
           ></i>
         </ul>
       </div>
 
       <div
+        id="navmain"
         className={`absolute z-[3px] left-0 right-0 bg-white ${
           !isToggle ? "top-[-600px]" : "top-[70px]"
         } sm:top-[-600px] top-[70px]"
