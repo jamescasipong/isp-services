@@ -72,21 +72,21 @@ export const footer = [
   {
     key: "2",
     id: "features",
-    title: "Features",
+    title: "Community",
     links: [
       {
         id: "1",
-        name: "Page",
+        name: "Help Center",
         links: "#",
       },
       {
         id: "2",
-        name: "Page",
+        name: "NewsLetters",
         links: "#",
       },
       {
         id: "3",
-        name: "Page",
+        name: "Blog",
         links: "#",
       },
     ],
@@ -94,21 +94,16 @@ export const footer = [
   {
     key: "3",
     id: "contact",
-    title: "Contact",
+    title: "Partner",
     links: [
       {
         id: "1",
-        name: "Page",
+        name: "Our Partner",
         links: "#",
       },
       {
         id: "2",
-        name: "Page",
-        links: "#",
-      },
-      {
-        id: "3",
-        name: "Page",
+        name: "Become a Partner",
         links: "#",
       },
     ],
