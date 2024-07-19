@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Google } from "../../assets";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -55,7 +56,7 @@ const Signup = () => {
           </div>
           <button
             type="submit"
-            className="px-4 py-2 bg-button text-white rounded-md w-full"
+            className="px-4 py-2 text-white rounded-md w-full button"
           >
             Sign up with email
           </button>
@@ -74,9 +75,14 @@ const Signup = () => {
 
         <button
           type="submit"
-          className="px-4 py-2 bg-[#EEEEEE] text-black font-medium rounded-md w-full"
+          className="px-4 py-2 bg-[#EEEEEE] text-black font-medium rounded-md w-full flex-col relative"
         >
-          Google
+          <div>
+            <img src={Google} alt="" />
+          </div>
+          <div>
+            <p>Google</p>
+          </div>
         </button>
 
         <p className="text-[16px] text-black text-center">
