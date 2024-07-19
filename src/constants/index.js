@@ -139,12 +139,12 @@ export const plans = [
 
   {
     id: "3",
-    name: "FiberPlus",
+    name: "FiberPlus - 300 Mbps",
     prices: "$3500",
     deadline: "per month",
     f1: " WiFi-6 Next Gen Modem for improved WiFi speed",
     f2: "Best streaming experience with BlastTV and FiberTV",
-    f3: " Perfect digital work and play companion",
-    f4: " Installation Fee Payment Options P125/mo for 24 months or one-time P2,500 payment",
+    f3: "Fast Downloads & No Lags",
+    f4: "Data Roaming",
   },
 ];

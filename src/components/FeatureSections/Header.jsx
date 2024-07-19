@@ -17,7 +17,7 @@ const Header = () => {
       <div className="w-full flex flex-wrap md:gap-10 gap-3 justify-center items-center my-10 md:p-10 p-0">
         {plans.map((p) => (
           <div
-            className="shadow-2xl md:p-10 p-7 rounded-md flex flex-col w-full flex-1 md:h-[500px] max-h-[500px]   justify-center"
+            className="shadow-2xl md:p-10 p-7 rounded-md flex flex-col w-full flex-1 lg:max-h-[600px] max-h-auto  justify-center"
             key={p.id}
           >
             <p>{p.name}</p>
@@ -26,11 +26,11 @@ const Header = () => {
               <p className="px-[5px] mt-2 font-medium top-0">{p.deadline}</p>
             </div>
 
-            <ul className="list-disc px-9 my-4 flex-1">
-              <li>{p.f1}</li>
-              <li>{p.f2}</li>
-              <li>{p.f3}</li>
-              <li>{p.f4}</li>
+            <ul className="list-disc px-9 my-4">
+              <li className="md:text-[16px] text-[13px]">{p.f1}</li>
+              <li className="md:text-[16px] text-[13px]">{p.f2}</li>
+              <li className="md:text-[16px] text-[13px]">{p.f3}</li>
+              <li className="md:text-[16px] text-[13px]">{p.f4}</li>
             </ul>
             <Button className="w-full flex" link="" label="Apply Now!"></Button>
           </div>
