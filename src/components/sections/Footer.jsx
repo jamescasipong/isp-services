@@ -8,7 +8,7 @@ const Footer = ({ borderT, marginTop }) => {
       className={`flex w-full sm:flex-row flex-col justify-center items-start sm:py-10 py-10 sm:px-10 px-2 ${marginTop} ${borderT} border-[#E6E6E6]`}
     >
       <div className="flex-1 flex flex-col gap-20">
-        <h3 className="font-medium">Site Name</h3>
+        <h3 className="font-medium">OptiNet</h3>
 
         <div className="flex-1 flex flex-row gap-5 items-center">
           <a href="#">

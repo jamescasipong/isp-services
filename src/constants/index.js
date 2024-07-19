@@ -19,30 +19,30 @@ export const heading = [
   {
     id: "1",
     logo: avatar,
-    title: "Subheading",
+    title: "Reliable Connectivity",
     description:
-      "Body text for whatever you’d like to say. Add main takeaway points, quotes, anecdotes, or even a very very short story.",
+      "Enjoy uninterrupted internet with our robust and stable connections. We ensure you stay connected with minimal downtime and maximum reliability.",
   },
   {
     id: "2",
     logo: globe,
-    title: "Subheading",
+    title: "24/7 Customer Support",
     description:
-      "Body text for whatever you’d like to say. Add main takeaway points, quotes, anecdotes, or even a very very short story.",
+      "Our dedicated customer support team is available around the clock to assist you with any issues or questions you may have. We're here to help whenever you need us.",
   },
   {
     id: "3",
     logo: calendar,
-    title: "Subheading",
+    title: "Affordable Plans",
     description:
-      "Body text for whatever you’d like to say. Add main takeaway points, quotes, anecdotes, or even a very very short story.",
+      "Choose from a variety of plans that fit your needs and budget. Get the best value for your money with our competitive pricing and no hidden fees.",
   },
   {
     id: "4",
     logo: lock,
-    title: "Subheading",
+    title: "Secure Browsing",
     description:
-      "Body text for whatever you’d like to say. Add main takeaway points, quotes, anecdotes, or even a very very short story.",
+      "Surf the web safely with our top-notch security features. We prioritize your online privacy and data protection to ensure a secure browsing experience.",
   },
 ];
 

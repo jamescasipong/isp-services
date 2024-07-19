@@ -47,7 +47,7 @@ const Home = () => {
 
       <div className="w-full flex flex-col gap-5 px-5 py-5">
         <div>
-          <h2 className="font-semibold text-[40px]">Heading</h2>
+          <h2 className="font-semibold text-[40px]">Why Choose OptiNet?</h2>
         </div>
         <div className="grid sm:grid-cols-2 grid-cols-1 md:gap-x-40 gap-x-12 sm:gap-y-10 gap-y-10 w-full">
           {heading.map((h) => (
