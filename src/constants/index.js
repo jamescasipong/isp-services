@@ -54,17 +54,17 @@ export const footer = [
     links: [
       {
         id: "1",
-        name: "Page",
+        name: "Content",
         links: "#",
       },
       {
         id: "2",
-        name: "Page",
+        name: "Explore",
         links: "#",
       },
       {
         id: "3",
-        name: "Page",
+        name: "Notes",
         links: "#",
       },
     ],
