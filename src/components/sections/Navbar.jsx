@@ -1,7 +1,10 @@
 import React from "react";
 import { navLinks } from "../../constants";
+import React, { useState } from "react";
 
 const Navbar = () => {
+  const [isToggle, setToggle] = !isToggle;
+
   return (
     <section
       id="navbar"
