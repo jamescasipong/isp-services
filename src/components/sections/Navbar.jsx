@@ -6,10 +6,6 @@ const Navbar = () => {
 
   const SetToggle = () => {
     setToggle(!isToggle);
-
-    const element = document.getElementById("navmain");
-    element.classList.remove("top-[70px]"); // Remove mystyle class from DIV
-    element.classList.add("top-[-600px]");
   };
   return (
     <section
