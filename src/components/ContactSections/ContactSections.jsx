@@ -38,7 +38,7 @@ const ContactSections = () => {
         </h1>
 
         <p className="mb-5 sm:text-[24px] text-[18px] text-third">
-          Subheading for description or instructions
+          Want to submit feedback? Contact Us.
         </p>
 
         <form onSubmit={handleSubmit}>

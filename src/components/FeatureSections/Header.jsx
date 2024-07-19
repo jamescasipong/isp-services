@@ -10,8 +10,9 @@ const Header = () => {
         OptiNet's features
       </h1>
 
-      <p className="mb-5 sm:max-w-[650px] sm:text-center text-justify sm:text-[24px] text-[18px] text-third">
-        And a subheading describing your pricing plans, too
+      <p className="description mb-5 sm:max-w-[700px] sm:text-center text-justify sm:text-[24px] text-[18px] text-third">
+        Discover OptiNet: Where connectivity meets convenience. Enjoy our
+        customized internet plans designed to enhance your digital lifestyle.
       </p>
 
       <div className="w-full flex flex-wrap md:gap-10 gap-3 justify-center items-center my-10 md:p-10 p-0">
