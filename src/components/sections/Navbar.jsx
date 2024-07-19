@@ -42,8 +42,8 @@ const Navbar = () => {
 
       <div
         className={`absolute z-[3px] left-0 right-0 bg-white ${
-          !isToggle ? "top-[-600px]" : "top-[70px]"
-        }  flex-col items-center justify-center rounded-md border-[1px] border-black transition-all duration-300 sm:top-[-600px] top-[70px]`}
+          !isToggle ? "sm:top-[-600px]" : "top-[70px]"
+        }  flex-col items-center justify-center rounded-md border-[1px] border-black transition-all duration-300 `}
       >
         {navLinks.map((nL) => (
           <ul key={nL.id} className="flex items-center justify-center">
