@@ -8,7 +8,7 @@ This repository hosts the codebase for our ISP (Internet Service Provider) servi
 ## Technologies Used
 - **Frontend:** ViteJS, Tailwind CSS
 - **Backend:** Node.js, Express.js (planned)
-- **Database:** Firebase Firestore (planned)
+- **Database:** MongoDB (planned)
 - **Deployment:** Deployment strategies (planned)
 
 ## Features (Planned)
