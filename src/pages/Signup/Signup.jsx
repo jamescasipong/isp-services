@@ -85,7 +85,8 @@ const Signup = () => {
           <span className="text-[#828282]">
             By clicking continue, you agree to our
           </span>{" "}
-          Terms of <br /> Service <span className="text-[#828282]">and </span>
+          Terms of <br className="ss:block hidden" /> Service{" "}
+          <span className="text-[#828282]">and </span>
           Privacy Policy
         </p>
       </div>
