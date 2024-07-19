@@ -73,12 +73,12 @@ const Signup = () => {
           </div>
         </div>
 
-        <div className="px-4 py-2 bg-[#EEEEEE] text-black font-medium rounded-md w-full relative">
+        <div className="px-4 py-2 bg-[#EEEEEE] text-black font-medium rounded-md w-full relative hover:bg-[#999999] transition-colors">
           <button type="submit" className="font-medium rounded-md w-full">
             <p>Google</p>
           </button>
 
-          <img className="absolute top-2.5 " src={Google} alt="" />
+          <img className="absolute top-2.5 z-[2]" src={Google} alt="" />
         </div>
 
         <p className="text-[16px] text-black text-center">
