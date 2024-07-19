@@ -118,7 +118,7 @@ export const footer = [
 export const plans = [
   {
     id: "1",
-    name: "FiberX",
+    name: "FiberX - 100 Mbps",
     prices: "₱1500",
     deadline: "per month",
     f1: " Stream Music,  download movies and photos",
@@ -128,13 +128,13 @@ export const plans = [
   },
   {
     id: "2",
-    name: "FiberZ",
+    name: "FiberZ - 200 Mbps",
     prices: "₱2500",
     deadline: "per month",
-    f1: "Feature",
-    f2: "Feature",
-    f3: "Feature",
-    f4: "Feature",
+    f1: " Stream Music",
+    f2: " Faster photo and movie downloads",
+    f3: " Video Conferencing",
+    f4: " Supports online learning & remote work",
   },
 
   {
@@ -142,9 +142,9 @@ export const plans = [
     name: "FiberPlus",
     prices: "$3500",
     deadline: "per month",
-    f1: "Feature",
-    f2: "Feature",
-    f3: "Feature",
-    f4: "Feature",
+    f1: " WiFi-6 Next Gen Modem for improved WiFi speed",
+    f2: "Best streaming experience with BlastTV and FiberTV",
+    f3: " Perfect digital work and play companion",
+    f4: " Installation Fee Payment Options P125/mo for 24 months or one-time P2,500 payment",
   },
 ];

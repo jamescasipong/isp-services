@@ -14,10 +14,10 @@ const Header = () => {
         And a subheading describing your pricing plans, too
       </p>
 
-      <div className="w-full flex ss:flex-row flex-col sm:gap-10 gap-3 justify-center items-center my-10 md:p-10 p-0">
+      <div className="w-full flex flex-wrap md:gap-10 gap-3 justify-center items-center my-10 md:p-10 p-0">
         {plans.map((p) => (
           <div
-            className="shadow-2xl md:p-10 p-7 rounded-md flex flex-col w-full"
+            className="shadow-2xl md:p-10 p-7 rounded-md flex flex-col w-full flex-1 md:h-[500px] max-h-[500px]   justify-center"
             key={p.id}
           >
             <p>{p.name}</p>
@@ -26,13 +26,13 @@ const Header = () => {
               <p className="px-[5px] mt-2 font-medium top-0">{p.deadline}</p>
             </div>
 
-            <ul className="list-disc px-9 my-4">
+            <ul className="list-disc px-9 my-4 flex-1">
               <li>{p.f1}</li>
               <li>{p.f2}</li>
               <li>{p.f3}</li>
               <li>{p.f4}</li>
             </ul>
-            <Button className="w-full" link="" label="Apply Now!"></Button>
+            <Button className="w-full flex" link="" label="Apply Now!"></Button>
           </div>
         ))}
       </div>
