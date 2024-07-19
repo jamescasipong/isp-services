@@ -23,11 +23,13 @@ const Home = () => {
       <div className="flex w-full flex-row flex-wrap-reverse sm:gap-[20px] gap-0">
         <div className="flex-1 flex justify-center items-start flex-col">
           <h4 className="font-bold sm:text-[40px] text-[28px] md:mt-0 mt-5">
-            Heading
+            Latest News and Updates
           </h4>
           <p className="sm:text-[24px] text-[16px] text-third mb-5">
             A subheading for this section, as long or as{" "}
-            <br className="md:block hidden" /> short as you like
+            <br className="md:block hidden " /> Stay informed with the latest
+            news about OptiNet’s services. From new features to service
+            improvements, get the updates that matter to you.
           </p>
           <Button link="#" label="Check Out"></Button>
         </div>
@@ -37,9 +39,12 @@ const Home = () => {
       <div className="flex w-full flex-row flex-wrap sm:gap-[20px] gap-0">
         <img className="flex-1 w-[100%] h-[100%]" src={image} alt="" />
         <div className="flex-1 flex justify-center items-start flex-col md:ml-[100px] ml-0 md:mt-0 mt-5">
-          <h4 className="font-bold sm:text-[40px] text-[28px] ">Heading</h4>
+          <h4 className="font-bold sm:text-[40px] text-[28px] ">
+            Service Enhancements
+          </h4>
           <p className="sm:text-[24px] text-[16px] text-third mb-5">
-            A subheading for this section, as long or as short as you like
+            We are constantly working to enhance our services. Discover the
+            latest improvements in speed, reliability, and customer support.
           </p>
           <Button link="#" label="Check Out"></Button>
         </div>
