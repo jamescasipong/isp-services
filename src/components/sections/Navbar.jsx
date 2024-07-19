@@ -42,7 +42,8 @@ const Navbar = () => {
 
       <div
         className={`absolute z-[3px] left-0 right-0 bg-white ${
-          !isToggle ? "sm:top-[-600px]" : "top-[70px]"
+          !isToggle ? "top-[-600px]" : "top-[70px]"
+        } sm:top-[-600px] top-[70px]"
         }  flex-col items-center justify-center rounded-md border-[1px] border-black transition-all duration-300 `}
       >
         {navLinks.map((nL) => (
