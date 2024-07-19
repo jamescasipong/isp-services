@@ -32,7 +32,7 @@ const Signup = () => {
 
   return (
     <div className="h-screen max-w-[100%] items-center flex justify-center sm:px-0 px-3">
-      <div className="flex flex-col items-center gap-3">
+      <div className="ss:w-[550px] flex flex-col items-center gap-3">
         <h3 className="font-semibold text-[24px]">Create an account</h3>
         <p className="font-normal t-[16px]">
           Enter your email to sign up for this app
@@ -42,7 +42,7 @@ const Signup = () => {
           <div className="flex sm:flex-row flex-col gap-5 w-full">
             <div className="w-full mb-4">
               <input
-                type="text"
+                type="email"
                 id="firstName"
                 name="firstName"
                 placeholder="Enter Email"
