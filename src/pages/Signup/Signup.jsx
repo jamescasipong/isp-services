@@ -123,7 +123,7 @@ const Signup = () => {
             type="submit"
             className="px-4 py-2 text-white rounded-md w-full button"
           >
-            Sign up with emails
+            Sign up with email
           </button>
         </form>
 
