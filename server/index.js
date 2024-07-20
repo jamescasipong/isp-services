@@ -11,8 +11,8 @@ app.use(cors());
 // Connect to MongoDB
 mongoose.connect("mongodb://localhost:27017/mydb");
 
-app.post("/login", (req, res) => {
-  const { email, firstName, lastName, password } = req.body;
+app.post("/signin", (req, res) => {
+  const { email, password } = req.body;
 
   EmployeeModel.findOne({ email: email }).then((user) => {
     if (user) {
@@ -26,7 +26,7 @@ app.post("/login", (req, res) => {
 });
 
 // Example route to get users
-app.get("/register", async (req, res) => {
+app.post("/signup", async (req, res) => {
   EmployeeModel.create(req.body)
     .then((employees) => res.json(employees))
     .catch((err) => res.json(err));
