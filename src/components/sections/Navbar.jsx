@@ -12,7 +12,7 @@ const Navbar = () => {
     let myPromise = new Promise(function (resolve) {
       setTimeout(function () {
         resolve(name);
-      }, 500);
+      }, 700);
     });
     setToggle(!isToggle);
     let url = await myPromise; // Await the resolution of the promise
