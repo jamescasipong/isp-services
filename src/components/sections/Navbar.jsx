@@ -61,6 +61,16 @@ const Navbar = () => {
             </a>
           </ul>
         ))}
+
+        <div className="flex items-center justify-center">
+          <div className="text-center w-full">
+            <a href="/signup">
+              <p className="text-black cursor-pointer font-medium navtext hover:text-orange-500 hover:bg-slate-300 ${nL.id} py-5 w-full">
+                Sign Up
+              </p>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );
