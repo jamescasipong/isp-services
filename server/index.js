@@ -18,13 +18,6 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("Could not connect to MongoDB:", err.message));
 
-const UserSchema = new mongoose.Schema({
-  name: String,
-  huhu: String,
-});
-
-const admin = mongoose.model("admin", UserSchema);
-
 app.post("/signin", async (req, res) => {
   const { email, password } = req.body;
 
