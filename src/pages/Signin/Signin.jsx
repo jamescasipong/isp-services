@@ -79,7 +79,7 @@ const Signin = () => {
             type="submit"
             className="px-4 py-2 text-white rounded-md w-full button"
           >
-            Sign In
+            Sign Ins
           </button>
         </form>
 
