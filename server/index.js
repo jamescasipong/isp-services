@@ -11,6 +11,10 @@ app.use(cors());
 // Connect to MongoDB
 mongoose.connect("mongodb://localhost:27017/mydb");
 
+app.get("/", (req, res) => {
+  res.send("hello");
+});
+
 app.post("/signin", (req, res) => {
   const { email, password } = req.body;
 
@@ -26,7 +30,7 @@ app.post("/signin", (req, res) => {
 });
 
 // Example route to get users
-app.post("/signup", async (req, res) => {
+app.get("/signup", async (req, res) => {
   EmployeeModel.create(req.body)
     .then((employees) => res.json(employees))
     .catch((err) => res.json(err));
