@@ -10,7 +10,7 @@ app.use(cors());
 
 // Connect to MongoDB
 mongoose.connect(
-  "mongodb+srv://jamesxcasipong:!Unravel12345@cluster0.yqpkrko.mongodb.net/NODE-API?retryWrites=true&w=majority&appName=Cluster0"
+  "mongodb+srv://jamesxcasipong:!Unravel12345@cluster0.yqpkrko.mongodb.net/NODE-APIs?retryWrites=true&w=majority&appName=Cluster0"
 );
 
 app.post("/signin", async (req, res) => {
@@ -63,5 +63,5 @@ app.post("/signup", async (req, res) => {
 // Start the server
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-  console.log(`Server is running on port http://localhost:${PORT}`);
+  console.log(`it works`);
 });
