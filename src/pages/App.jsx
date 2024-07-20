@@ -2,9 +2,9 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 import HomeMain from "./HomeMain/HomeMain";
 import Contact from "./Contact/Contact";
-import Navbar from "../components/sections/Navbar";
 import Features from "./Features/Features";
 import Signup from "./Signup/Signup";
+import Signin from "./Signin/Signin";
 
 function useLocations(name) {
   const location = useLocation();
@@ -24,6 +24,7 @@ function App() {
             <Route path="/features" element={<Features></Features>}></Route>
             <Route path="/contact" element={<Contact></Contact>}></Route>
             <Route path="/SignUp" element={<Signup />}></Route>
+            <Route path="/signin" element={<Signin />}></Route>
           </Routes>
         </BrowserRouter>
       </div>

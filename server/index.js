@@ -11,9 +11,22 @@ app.use(cors());
 // Connect to MongoDB
 mongoose.connect("mongodb://localhost:27017/mydb");
 
+app.post("/login", (req, res) => {
+  const { email, firstName, lastName, password } = req.body;
+
+  EmployeeModel.findOne({ email: email }).then((user) => {
+    if (user) {
+      if (user.password === password) {
+        res.json("success");
+      } else {
+        res.json("password incorrect");
+      }
+    }
+  });
+});
+
 // Example route to get users
-app.post("/register", (req, res) => {
-  console.log("Received data:", req.body); // Log the received data
+app.get("/register", async (req, res) => {
   EmployeeModel.create(req.body)
     .then((employees) => res.json(employees))
     .catch((err) => res.json(err));
@@ -22,5 +35,5 @@ app.post("/register", (req, res) => {
 // Start the server
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-  console.log(`Server is running on ${PORT}`);
+  console.log(`Server is running on port http://localhost:${PORT}`);
 });
