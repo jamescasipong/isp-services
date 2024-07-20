@@ -12,16 +12,11 @@ app.use(cors());
 mongoose.connect("mongodb://localhost:27017/mydb");
 
 // Example route to get users
-app.post("/signup", (req, res) => {
+app.post("/register", (req, res) => {
   console.log("Received data:", req.body); // Log the received data
   EmployeeModel.create(req.body)
-    .then((employee) => {
-      res.json(employee);
-    })
-    .catch((err) => {
-      console.error("Error saving data:", err); // Log any errors
-      res.status(500).json({ error: "Internal Server Error" });
-    });
+    .then((employees) => res.json(employees))
+    .catch((err) => res.json(err));
 });
 
 // Start the server

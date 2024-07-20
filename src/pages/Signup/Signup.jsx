@@ -27,10 +27,9 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Here you can handle form submission, e.g., send data to backend
-    console.log(formData);
 
     axios
-      .post("http://localhost:3001/signup", {
+      .post("http://localhost:3001/register", {
         email: formData.email,
         firstName: formData.firstName,
         lastName: formData.lastName,
