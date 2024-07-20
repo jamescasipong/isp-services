@@ -4,7 +4,16 @@ import { Google } from "../../assets";
 const Signup = () => {
   const [formData, setFormData] = useState({
     email: "",
+    firstName: "",
+    lastName: "",
+    password: "",
   });
+
+  const [isToggle, setToggle] = useState(false);
+
+  const SetToggle = () => {
+    setToggle(true);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,6 +30,9 @@ const Signup = () => {
     // Reset form after submission (optional)
     setFormData({
       email: "",
+      firstName: "",
+      lastName: "",
+      password: "",
     });
 
     window.location = "/";
@@ -35,7 +47,36 @@ const Signup = () => {
         </p>
 
         <form className="w-full" onSubmit={handleSubmit}>
-          <div className="flex sm:flex-row flex-col gap-5 w-full">
+          <div
+            className={`${isToggle ? "flex" : "hidden"} flex-row w-full gap-5`}
+          >
+            <div className="w-full mb-4">
+              <input
+                type="text"
+                id="firstname"
+                name="firstName"
+                placeholder="Enter First Name"
+                value={formData.firstName}
+                onChange={handleChange}
+                className="mt-1 p-2 border rounded-md sm:max-w-[100%] w-full"
+                required
+              />
+            </div>
+
+            <div className="w-full mb-4">
+              <input
+                type="text"
+                id="lastname"
+                name="lastName"
+                placeholder="Enter Last Name"
+                value={formData.lastName}
+                onChange={handleChange}
+                className="mt-1 p-2 border rounded-md sm:max-w-[100%] w-full"
+                required
+              />
+            </div>
+          </div>
+          <div className="flex flex-col w-full">
             <div className="w-full mb-4">
               <input
                 type="email"
@@ -48,9 +89,23 @@ const Signup = () => {
                 required
               />
             </div>
+
+            <div className={`${isToggle ? "flex" : "hidden"} mb-5`}>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter Password"
+                value={formData.password}
+                onChange={handleChange}
+                className="mt-1 p-2 border rounded-md sm:max-w-[100%] w-full"
+                required
+              />
+            </div>
             {/* Add other form fields similarly */}
           </div>
           <button
+            onClick={SetToggle}
             type="submit"
             className="px-4 py-2 text-white rounded-md w-full button"
           >
