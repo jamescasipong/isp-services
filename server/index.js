@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const bcrypt = require("bcrypt");
 const UserAccount = require("./models/Users");
 require("dotenv").config();
 
@@ -10,8 +11,12 @@ app.use(express.json());
 app.use(cors());
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
+// Signin route
 app.post("/signin", async (req, res) => {
   const { email, password } = req.body;
 
@@ -20,16 +25,14 @@ app.post("/signin", async (req, res) => {
     const user = await UserAccount.findOne({ email });
 
     if (!user) {
-      // If user is not found
       return res.status(404).json({ message: "User not found" });
     }
 
     // Check if the password is correct
-    if (user.password == password) {
-      // Password is correct
-      res.json("success");
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (isMatch) {
+      res.json({ message: "Signin successful" });
     } else {
-      // Password is incorrect
       res.status(401).json({ message: "Password incorrect" });
     }
   } catch (error) {
@@ -38,9 +41,9 @@ app.post("/signin", async (req, res) => {
   }
 });
 
-// Example route to get users
+// Signup route
 app.post("/signup", async (req, res) => {
-  const { email } = req.body;
+  const { email, firstName, lastName, password } = req.body;
 
   try {
     // Check if the user already exists
@@ -50,17 +53,27 @@ app.post("/signup", async (req, res) => {
       return res.status(400).json({ message: "User already exists" });
     }
 
-    // If user doesn't exist, create a new user account
-    const newUser = await UserAccount.create(req.body);
-    res.status(200).json(newUser);
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create a new user account
+    const newUser = await UserAccount.create({
+      email,
+      firstName,
+      lastName,
+      password: hashedPassword,
+    });
+    res
+      .status(201)
+      .json({ message: "User created successfully", user: newUser });
   } catch (error) {
-    console.log(error.message);
-    res.status(500).json({ message: error.message });
+    console.error(error.message);
+    res.status(500).json({ message: "Server error" });
   }
 });
 
 // Start the server
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-  console.log(`it works`);
+  console.log(`Server running on port ${PORT}`);
 });
