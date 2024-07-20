@@ -9,7 +9,9 @@ app.use(express.json());
 app.use(cors());
 
 // Connect to MongoDB
-mongoose.connect("mongodb://localhost:27017/mydb");
+mongoose.connect(
+  "mongodb+srv://jamesxcasipong:!Unravel12345@cluster0.yqpkrko.mongodb.net/NODE-API?retryWrites=true&w=majority&appName=Cluster0"
+);
 
 app.post("/signin", async (req, res) => {
   const { email, password } = req.body;
