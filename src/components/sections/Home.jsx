@@ -17,7 +17,7 @@ const Home = () => {
           Optimize your online experience with OptiNet's lightning-fast internet
           services.
         </p>
-        <Button link="/signup" label="Join Now!"></Button>
+        <Button link="/signup" label="Join Nows!"></Button>
       </div>
 
       <div className="flex w-full flex-row flex-wrap-reverse sm:gap-[20px] gap-0">
