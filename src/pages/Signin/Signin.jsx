@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Google } from "../../assets";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Google } from "../../assets"; // Assuming you have Google logo imported correctly
 
 const Signin = () => {
   const [formData, setFormData] = useState({
@@ -9,11 +9,7 @@ const Signin = () => {
     password: "",
   });
 
-  const [isToggle, setToggle] = useState(false);
-
-  const SetToggle = () => {
-    setToggle(true);
-  };
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,30 +19,33 @@ const Signin = () => {
     }));
   };
 
-  const navigate = useNavigate();
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you can handle form submission, e.g., send data to backend
 
     axios
       .post("http://localhost:3001/signin", {
         email: formData.email,
         password: formData.password,
       })
-      .then((result) => {
-        if (result.data === "Success") {
-          navigate("/home");
+      .then((response) => {
+        const { data } = response;
+        if (data === "success") {
+          navigate("/home"); // Redirect to home or another page upon successful signin
+        } else {
+          alert(data); // Show error message from backend
         }
       })
-      .catch((err) => console.log(err));
+      .catch((error) => {
+        console.error("Signin Error:", error);
+        alert("Signin failed. Please try again."); // Generic error message
+      });
   };
 
   return (
     <div className="h-screen max-w-[100%] items-center flex justify-center sm:px-0 px-3">
       <div className="ss:w-[550px] flex flex-col items-center gap-3">
-        <h3 className="font-semibold text-[24px]">Sign in an account</h3>
-        <p className="font-normal t-[16px]">Enter your account to sign in</p>
+        <h3 className="font-semibold text-[24px]">Sign in to your account</h3>
+        <p className="font-normal t-[16px]">Enter your credentials below:</p>
 
         <form className="w-full" onSubmit={handleSubmit}>
           <div className="flex flex-col w-full">
@@ -75,14 +74,12 @@ const Signin = () => {
                 required
               />
             </div>
-            {/* Add other form fields similarly */}
           </div>
           <button
-            onClick={SetToggle}
             type="submit"
             className="px-4 py-2 text-white rounded-md w-full button"
           >
-            Submit
+            Sign In
           </button>
         </form>
 
@@ -90,19 +87,17 @@ const Signin = () => {
           <div className="flex-1 flex justify-center items-start flex-col">
             <div className=" bg-[#E6E6E6]  h-[2px] w-full "></div>
           </div>
-          <p className=""> or continute with </p>
-
+          <p className=""> or continue with </p>
           <div className="flex-1 flex justify-center items-start flex-col">
             <div className="bg-[#E6E6E6]  h-[2px] w-full"></div>
           </div>
         </div>
 
         <div className="px-4 py-2 bg-[#EEEEEE] text-black font-medium rounded-md w-full relative hover:bg-[#999999] transition-colors">
-          <button type="submit" className="font-medium rounded-md w-full">
+          <button type="button" className="font-medium rounded-md w-full">
             <p>Google</p>
           </button>
-
-          <img className="absolute top-2.5 z-[2]" src={Google} alt="" />
+          <img className="absolute top-2.5 z-[2]" src={Google} alt="Google" />
         </div>
 
         <p className="text-[16px] text-black text-center">
@@ -110,8 +105,7 @@ const Signin = () => {
             By clicking continue, you agree to our
           </span>{" "}
           Terms of <br className="ss:block hidden" /> Service{" "}
-          <span className="text-[#828282]">and </span>
-          Privacy Policy
+          <span className="text-[#828282]">and</span> Privacy Policy
         </p>
       </div>
     </div>

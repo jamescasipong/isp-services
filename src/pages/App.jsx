@@ -5,6 +5,7 @@ import Contact from "./Contact/Contact";
 import Features from "./Features/Features";
 import Signup from "./Signup/Signup";
 import Signin from "./Signin/Signin";
+import AccHome from "./AccHome/AccHome";
 
 function useLocations(name) {
   const location = useLocation();
@@ -25,6 +26,7 @@ function App() {
             <Route path="/contact" element={<Contact></Contact>}></Route>
             <Route path="/SignUp" element={<Signup />}></Route>
             <Route path="/signin" element={<Signin />}></Route>
+            <Route path="/home" element={<AccHome />}></Route>
           </Routes>
         </BrowserRouter>
       </div>

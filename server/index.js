@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const EmployeeModel = require("./models/Employee");
+const UserAccount = require("./models/Users");
 
 const app = express();
 
@@ -11,29 +11,51 @@ app.use(cors());
 // Connect to MongoDB
 mongoose.connect("mongodb://localhost:27017/mydb");
 
-app.get("/", (req, res) => {
-  res.send("hello");
-});
-
-app.post("/signin", (req, res) => {
+app.post("/signin", async (req, res) => {
   const { email, password } = req.body;
 
-  EmployeeModel.findOne({ email: email }).then((user) => {
-    if (user) {
-      if (user.password === password) {
-        res.json("success");
-      } else {
-        res.json("password incorrect");
-      }
+  try {
+    // Find user by email
+    const user = await UserAccount.findOne({ email });
+
+    if (!user) {
+      // If user is not found
+      return res.status(404).json({ message: "User not found" });
     }
-  });
+
+    // Check if the password is correct
+    if (user.password == password) {
+      // Password is correct
+      res.json("success");
+    } else {
+      // Password is incorrect
+      res.status(401).json({ message: "Password incorrect" });
+    }
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ message: "Server error" });
+  }
 });
 
 // Example route to get users
 app.post("/signup", async (req, res) => {
-  EmployeeModel.create(req.body)
-    .then((employees) => res.json(employees))
-    .catch((err) => res.json(err));
+  const { email } = req.body;
+
+  try {
+    // Check if the user already exists
+    const existingUser = await UserAccount.findOne({ email });
+
+    if (existingUser) {
+      return res.status(400).json({ message: "User already exists" });
+    }
+
+    // If user doesn't exist, create a new user account
+    const newUser = await UserAccount.create(req.body);
+    res.status(200).json(newUser);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ message: error.message });
+  }
 });
 
 // Start the server

@@ -32,7 +32,7 @@ const Signup = () => {
     });
     const signin = await myPromise;
 
-    window.location.href = "signin";
+    window.location.href = signin;
   }
 
   const handleSubmit = (e) => {
@@ -46,10 +46,10 @@ const Signup = () => {
         lastName: formData.lastName,
         password: formData.password,
       })
-      .then((result) => console.log(result))
-      .catch((err) => console.log(err));
+      .then((result) => myDisplay())
+      .catch((err) => alert("It has already been registered"));
 
-    //later myDisplay();
+    //later
   };
 
   return (
