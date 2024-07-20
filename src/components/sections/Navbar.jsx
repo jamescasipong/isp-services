@@ -68,7 +68,7 @@ const Navbar = () => {
 
         <div className="flex items-center justify-center">
           <div className="text-center w-full">
-            <a href="/signup">
+            <a href="/signup" onClick={SetToggle}>
               <p className="text-black cursor-pointer font-medium navtext hover:text-orange-500 hover:bg-slate-300 ${nL.id} py-5 w-full">
                 Sign Up
               </p>
