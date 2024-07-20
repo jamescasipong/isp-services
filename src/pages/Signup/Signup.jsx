@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Google } from "../../assets";
+import axios from "axios";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -28,12 +29,6 @@ const Signup = () => {
     // Here you can handle form submission, e.g., send data to backend
     console.log(formData);
     // Reset form after submission (optional)
-    setFormData({
-      email: "",
-      firstName: "",
-      lastName: "",
-      password: "",
-    });
 
     window.location = "/";
   };
