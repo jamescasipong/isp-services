@@ -7,6 +7,18 @@ const Navbar = () => {
   const SetToggle = () => {
     setToggle(!isToggle);
   };
+
+  async function myDisplay(name) {
+    let myPromise = new Promise(function (resolve) {
+      setTimeout(function () {
+        resolve(name);
+      }, 500);
+    });
+    setToggle(!isToggle);
+    let url = await myPromise; // Await the resolution of the promise
+    window.location.href = url;
+  }
+
   return (
     <section
       id="navbar"
@@ -22,7 +34,7 @@ const Navbar = () => {
             <li
               className={`text-black cursor-pointer font-medium navtext hover:text-orange-500 ${nL.id}`}
             >
-              <a href={`${nL.id} `}>{nL.title}</a>
+              <a href={`${nL.id}`}>{nL.title}</a>
             </li>
           </ul>
         ))}
@@ -54,8 +66,9 @@ const Navbar = () => {
           <ul key={nL.id} className="flex items-center justify-center">
             <a
               className="text-center w-full"
-              onClick={SetToggle}
-              href={`${nL.id} `}
+              onClick={() => {
+                myDisplay(nL.id);
+              }}
             >
               <li
                 className={`text-black cursor-pointer font-medium navtext hover:text-orange-500 hover:bg-slate-300 ${nL.id} py-5 w-full`}
@@ -68,11 +81,15 @@ const Navbar = () => {
 
         <div className="flex items-center justify-center">
           <div className="text-center w-full">
-            <a href="/signup" onClick={SetToggle}>
+            <div
+              onClick={() => {
+                myDisplay("/signup");
+              }}
+            >
               <p className="text-black cursor-pointer font-medium navtext hover:text-orange-500 hover:bg-slate-300 ${nL.id} py-5 w-full">
                 Sign Up
               </p>
-            </a>
+            </div>
           </div>
         </div>
       </div>
