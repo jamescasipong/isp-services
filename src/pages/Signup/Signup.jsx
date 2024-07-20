@@ -3,10 +3,7 @@ import { Google } from "../../assets";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
     email: "",
-    message: "",
   });
 
   const handleChange = (e) => {
@@ -23,11 +20,10 @@ const Signup = () => {
     console.log(formData);
     // Reset form after submission (optional)
     setFormData({
-      firstName: "",
-      lastName: "",
       email: "",
-      message: "",
     });
+
+    window.location = "/";
   };
 
   return (
@@ -43,10 +39,10 @@ const Signup = () => {
             <div className="w-full mb-4">
               <input
                 type="email"
-                id="firstName"
-                name="firstName"
+                id="email"
+                name="email"
                 placeholder="Enter Email"
-                value={formData.firstName}
+                value={formData.email}
                 onChange={handleChange}
                 className="mt-1 p-2 border rounded-md sm:max-w-[100%] w-full"
                 required
