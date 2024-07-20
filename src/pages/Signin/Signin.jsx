@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Google } from "../../assets";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Signin = () => {
   const [formData, setFormData] = useState({
@@ -22,16 +23,22 @@ const Signin = () => {
     }));
   };
 
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // Here you can handle form submission, e.g., send data to backend
 
     axios
-      .post("http://localhost:3001/register", {
+      .post("http://localhost:3001/signin", {
         email: formData.email,
         password: formData.password,
       })
-      .then((result) => console.log(result))
+      .then((result) => {
+        if (result.data === "Success") {
+          navigate("/home");
+        }
+      })
       .catch((err) => console.log(err));
   };
 

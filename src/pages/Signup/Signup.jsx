@@ -40,7 +40,7 @@ const Signup = () => {
     // Here you can handle form submission, e.g., send data to backend
 
     axios
-      .post("http://localhost:3001/register", {
+      .post("http://localhost:3001/signup", {
         email: formData.email,
         firstName: formData.firstName,
         lastName: formData.lastName,
