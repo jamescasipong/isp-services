@@ -30,7 +30,7 @@ app.post("/signin", (req, res) => {
 });
 
 // Example route to get users
-app.get("/signup", async (req, res) => {
+app.post("/signup", async (req, res) => {
   EmployeeModel.create(req.body)
     .then((employees) => res.json(employees))
     .catch((err) => res.json(err));
