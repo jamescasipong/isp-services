@@ -52,7 +52,11 @@ const Navbar = () => {
       >
         {navLinks.map((nL) => (
           <ul key={nL.id} className="flex items-center justify-center">
-            <a className="text-center w-full" href={`${nL.id} `}>
+            <a
+              className="text-center w-full"
+              onClick={SetToggle}
+              href={`${nL.id} `}
+            >
               <li
                 className={`text-black cursor-pointer font-medium navtext hover:text-orange-500 hover:bg-slate-300 ${nL.id} py-5 w-full`}
               >
