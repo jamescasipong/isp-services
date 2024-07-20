@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const UserAccount = require("./models/Users");
+require("dotenv").config();
 
 const app = express();
 
@@ -9,9 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 // Connect to MongoDB
-mongoose.connect(
-  "mongodb+srv://jamesxcasipong:!Unravel12345@cluster0.yqpkrko.mongodb.net/NODE-APIs?retryWrites=true&w=majority&appName=Cluster0"
-);
+mongoose.connect(process.env.MONGODB_URI);
 
 app.post("/signin", async (req, res) => {
   const { email, password } = req.body;
