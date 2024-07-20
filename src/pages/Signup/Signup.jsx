@@ -24,6 +24,17 @@ const Signup = () => {
     }));
   };
 
+  async function myDisplay() {
+    let myPromise = new Promise(function (resolve) {
+      setTimeout(function () {
+        resolve("/signin");
+      }, 1000);
+    });
+    const signin = await myPromise;
+
+    window.location.href = "signin";
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // Here you can handle form submission, e.g., send data to backend
@@ -37,6 +48,8 @@ const Signup = () => {
       })
       .then((result) => console.log(result))
       .catch((err) => console.log(err));
+
+    //later myDisplay();
   };
 
   return (

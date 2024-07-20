@@ -39,6 +39,15 @@ const Navbar = () => {
           </ul>
         ))}
 
+        <div className="flex-row gap-10 sm:flex hidden items-center">
+          <a
+            href="/signin"
+            className=" text-black cursor-pointer font-medium navtext hover:text-orange-500"
+          >
+            Sign In
+          </a>
+        </div>
+
         <a href="/signup" className="button text-white text-[18px]">
           Sign Up
         </a>
@@ -78,6 +87,20 @@ const Navbar = () => {
             </a>
           </ul>
         ))}
+
+        <div className="flex items-center justify-center">
+          <div className="text-center w-full">
+            <div
+              onClick={() => {
+                myDisplay("/signIn");
+              }}
+            >
+              <p className="text-black cursor-pointer font-medium navtext hover:text-orange-500 hover:bg-slate-300 ${nL.id} py-5 w-full">
+                Sign In
+              </p>
+            </div>
+          </div>
+        </div>
 
         <div className="flex items-center justify-center">
           <div className="text-center w-full">
