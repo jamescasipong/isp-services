@@ -21,27 +21,29 @@ app.get("/", async (req, res) => {
     });
 });
 
-app.post("/signup", async (req, res) => {
-  const { email, password, firstName, lastName } = req.body;
+app.post("/signin", async (req, res) => {
+  const { email, password } = req.body;
 
   try {
-    // Check if the user already exists
-    const existingUser = await UserAccount.findOne({ email });
+    // Find user by email
+    const user = await UserAccount.findOne({ email });
 
-    if (existingUser) {
-      return res.status(400).json({ message: "User already exists" });
+    if (!user) {
+      // If user is not found
+      return res.status(404).json({ message: "User not found" });
     }
 
-    // Create a new user account
-    const newUser = new UserAccount({ email, password, firstName, lastName });
-    await newUser.save();
-
-    res.status(200).json(newUser);
+    // Check if the password is correct
+    if (user.password == password) {
+      // Password is correct
+      res.json("success");
+    } else {
+      // Password is incorrect
+      res.status(401).json({ message: "Password incorrect" });
+    }
   } catch (error) {
-    console.error("Error signing up user:", error.message); // Log detailed error message
-    res
-      .status(500)
-      .json({ message: "Failed to sign up user. Please try again later." });
+    console.error(error.message);
+    res.status(500).json({ message: "Server error" });
   }
 });
 
@@ -61,10 +63,8 @@ app.post("/signup", async (req, res) => {
     const newUser = await UserAccount.create(req.body);
     res.status(200).json(newUser);
   } catch (error) {
-    console.error("Error signing up user:", error.message); // Log detailed error message
-    res
-      .status(500)
-      .json({ message: "Failed to sign up user. Please try again later." });
+    console.log(error.message);
+    res.status(500).json({ message: error.message });
   }
 });
 
