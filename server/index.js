@@ -21,29 +21,35 @@ app.get("/", async (req, res) => {
     });
 });
 
-app.post("/signin", async (req, res) => {
-  const { email, password } = req.body;
+app.post("/signup", async (req, res) => {
+  const { email, password, firstName, lastName } = req.body;
 
   try {
-    // Find user by email
-    const user = await UserAccount.findOne({ email });
+    // Check if the user already exists
+    const existingUser = await UserAccount.findOne({ email });
 
-    if (!user) {
-      // If user is not found
-      return res.status(404).json({ message: "User not found" });
+    if (existingUser) {
+      return res.status(400).json({ message: "User already exists" });
     }
 
-    // Check if the password is correct
-    if (user.password == password) {
-      // Password is correct
-      res.json("success");
-    } else {
-      // Password is incorrect
-      res.status(401).json({ message: "Password incorrect" });
-    }
+    // Create a new user account
+    const newUser = new UserAccount({
+      email,
+      password, // This password will be hashed by the middleware
+      firstName,
+      lastName,
+    });
+
+    // Save the new user to the database
+    await newUser.save();
+
+    // Respond with the created user
+    res.status(200).json(newUser);
   } catch (error) {
-    console.error(error.message);
-    res.status(500).json({ message: "Server error" });
+    console.error("Error signing up user:", error.message); // Log detailed error message
+    res
+      .status(500)
+      .json({ message: "Failed to sign up user. Please try again later." });
   }
 });
 
