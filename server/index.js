@@ -9,9 +9,7 @@ app.use(express.json());
 app.use(cors());
 
 // Connect to MongoDB
-mongoose.connect(
-  "mongodb+srv://jamesxcasipong:!Unravel12345@cluster0.yqpkrko.mongodb.net/NODE-APIs?retryWrites=true&w=majority&appName=Cluster0"
-);
+mongoose.connect(process.env.CONST_USERS_URL);
 
 app.get("/", async (req, res) => {
   UserAccount.find({})
