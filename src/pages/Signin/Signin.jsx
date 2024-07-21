@@ -23,7 +23,7 @@ const Signin = () => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:3001/signin", {
+      .post("https://optinet-api-dev.vercel.app/signin", {
         email: formData.email,
         password: formData.password,
       })
