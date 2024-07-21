@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Google } from "../../assets";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Signup = () => {
@@ -31,6 +32,7 @@ const Signup = () => {
       [name]: value,
     }));
   };
+  const navigate = useNavigate();
 
   async function myDisplay() {
     let myPromise = new Promise(function (resolve) {
@@ -69,8 +71,8 @@ const Signup = () => {
         lastName: formData.lastName,
         password: formData.password,
       })
-      .then((result) => myDisplay())
-      .catch((err) => alert("It has already been registered"));
+      .then((result) => navigate("/signin"))
+      .catch((err) => alert("This email has already been registered!"));
 
     //later
   };

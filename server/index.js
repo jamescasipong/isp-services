@@ -63,8 +63,10 @@ app.post("/signup", async (req, res) => {
     const newUser = await UserAccount.create(req.body);
     res.status(200).json(newUser);
   } catch (error) {
-    console.log(error.message);
-    res.status(500).json({ message: error.message });
+    console.error("Error signing up user:", error.message); // Log detailed error message
+    res
+      .status(500)
+      .json({ message: "Failed to sign up user. Please try again later." });
   }
 });
 
