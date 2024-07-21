@@ -11,7 +11,7 @@ const Home = () => {
     >
       <div className="flex-col flex flex-1 items-center justify-center w-full py-10 sm:mt-40 mt-10">
         <h1 className="font-bold sm:text-6xl text-[40px] mb-5 sm:text-start text-center ">
-          Welcome to OptiNet
+          Welcome to OptiNets
         </h1>
         <p className="mb-5 sm:max-w-[650px] sm:text-center text-justify sm:text-[24px] text-[18px] text-third">
           Optimize your online experience with OptiNet's lightning-fast internet
