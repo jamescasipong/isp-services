@@ -7,7 +7,6 @@ import Signup from "./Signup/Signup";
 import Signin from "./Signin/Signin";
 import AccHome from "./AccHome/AccHome";
 import Reset from "./Reset/Reset";
-import { AuthProvider } from "./AuthContext";
 
 function useLocations(name) {
   const location = useLocation();

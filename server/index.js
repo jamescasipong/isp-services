@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const bcrypt = require("bcrypt");
 const UserAccount = require("./models/Users");
 require("dotenv").config();
 const app = express();
@@ -18,18 +17,16 @@ mongoose
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log("MongoDB connection error:", err));
 
-// GET all users (for debugging or admin purposes)
 app.get("/", async (req, res) => {
-  try {
-    const users = await UserAccount.find({});
-    res.json(users);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: "Server error" });
-  }
+  UserAccount.find({})
+    .then(function (users) {
+      res.json(users);
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
 });
 
-// Signin route
 app.post("/signin", async (req, res) => {
   const { email, password } = req.body;
 
@@ -38,15 +35,16 @@ app.post("/signin", async (req, res) => {
     const user = await UserAccount.findOne({ email });
 
     if (!user) {
+      // If user is not found
       return res.status(404).json({ message: "User not found" });
     }
 
-    // Compare hashed passwords
-    const isMatch = await bcrypt.compare(password, user.password);
-
-    if (isMatch) {
+    // Check if the password is correct
+    if (user.password == password) {
+      // Password is correct
       res.json("success");
     } else {
+      // Password is incorrect
       res.status(401).json({ message: "Password incorrect" });
     }
   } catch (error) {
@@ -55,9 +53,9 @@ app.post("/signin", async (req, res) => {
   }
 });
 
-// Signup route
+// Example route to get users
 app.post("/signup", async (req, res) => {
-  const { email, password, firstName, lastName } = req.body;
+  const { email } = req.body;
 
   try {
     // Check if the user already exists
@@ -67,25 +65,17 @@ app.post("/signup", async (req, res) => {
       return res.status(400).json({ message: "User already exists" });
     }
 
-    // Hash the password before saving it to the database
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Create a new user account
-    const newUser = await UserAccount.create({
-      email,
-      password: hashedPassword,
-      firstName,
-      lastName,
-    });
-
+    // If user doesn't exist, create a new user account
+    const newUser = await UserAccount.create(req.body);
     res.status(200).json(newUser);
   } catch (error) {
-    console.error(error.message);
+    console.log(error.message);
     res.status(500).json({ message: error.message });
   }
 });
 
 // Start the server
+
 app.listen(3001, () => {
   console.log(`Server is running on port http://localhost:3001`);
 });
