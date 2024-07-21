@@ -72,7 +72,7 @@ const Signup = () => {
         password: formData.password,
       })
       .then((result) => navigate("/signin"))
-      .catch((err) => alert("This email has already been registerd"));
+      .catch((err) => alert("This email has already been registered"));
 
     //later
   };
