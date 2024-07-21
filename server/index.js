@@ -12,13 +12,13 @@ app.use(cors());
 mongoose.connect(process.env.CONST_USERS_URL);
 
 app.get("/", async (req, res) => {
-  UserAccount.find({})
-    .then(function (users) {
-      res.json(users);
-    })
-    .catch(function (err) {
-      console.log(err);
-    });
+  try {
+    const users = await UserAccount.find({});
+    res.json(users);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
+  }
 });
 
 app.post("/signin", async (req, res) => {

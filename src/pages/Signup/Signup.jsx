@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Google } from "../../assets";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Signup = () => {
@@ -32,7 +31,6 @@ const Signup = () => {
       [name]: value,
     }));
   };
-  const navigate = useNavigate();
 
   async function myDisplay() {
     let myPromise = new Promise(function (resolve) {
@@ -65,14 +63,14 @@ const Signup = () => {
     setPasswordError("");
 
     axios
-      .post("https://optinet-api-dev.vercel.app/signup", {
+      .post("https://isp-services.vercel.app/signup", {
         email: formData.email,
         firstName: formData.firstName,
         lastName: formData.lastName,
         password: formData.password,
       })
-      .then((result) => navigate("/signin"))
-      .catch((err) => alert("This email has already been registered"));
+      .then((result) => myDisplay())
+      .catch((err) => alert("It has already been registered"));
 
     //later
   };
@@ -148,7 +146,7 @@ const Signup = () => {
               ></i>
             </div>
             {passwordError && (
-              <p className="text-red-500 text-sm mb-3">{passwordError}</p>
+              <p className="text-red-500 text-sm mb-5">{passwordError}</p>
             )}
             {/* Add other form fields similarly */}
           </div>

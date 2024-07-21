@@ -12,11 +12,7 @@ const LogoutButton = () => {
     navigate("/signin");
   };
 
-  return (
-    <button className="button text-white" onClick={handleLogout}>
-      Logouts
-    </button>
-  );
+  return <button className="button text-white">Logouts</button>;
 };
 
 export default LogoutButton;
