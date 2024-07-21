@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Google } from "../../assets"; // Assuming you have Google logo imported correctly
+import { useAuth } from "../AuthContext"; // Import Auth context
 
 const Signin = () => {
   const [formData, setFormData] = useState({
@@ -11,11 +12,19 @@ const Signin = () => {
 
   const [isPassword, setType] = useState(true);
 
+  const { isAuthenticated, login } = useAuth(); // Use auth context
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/home"); // Redirect to home if already authenticated
+    }
+  }, [isAuthenticated, navigate]);
+
   const SetType = () => {
     setType(!isPassword);
   };
-
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,6 +45,7 @@ const Signin = () => {
       .then((response) => {
         const { data } = response;
         if (data === "success") {
+          login(); // Update auth state to logged in
           navigate("/home"); // Redirect to home or another page upon successful signin
         } else {
           alert(data); // Show error message from backend
@@ -43,17 +53,14 @@ const Signin = () => {
       })
       .catch((error) => {
         if (error.response) {
-          // Server responded with an error status (4xx or 5xx)
           if (error.response.status === 401) {
             alert("Email or password is incorrect");
           } else {
             alert("Something went wrong. Please try again later.");
           }
         } else if (error.request) {
-          // Request was made but no response received
           alert("No response from server. Please try again.");
         } else {
-          // Something else happened
           alert("Something went wrong. Please try again later.");
         }
       });
@@ -93,7 +100,7 @@ const Signin = () => {
               />
               <i
                 onClick={SetType}
-                class={`fa-duotone ${
+                className={`fa-duotone ${
                   isPassword ? "fa-solid fa-unlock" : "fa-solid fa-lock"
                 } absolute left-[92%] top-[40%] opacity-70 cursor-pointer hover:opacity-100`}
               ></i>
@@ -109,20 +116,20 @@ const Signin = () => {
         </form>
         <p
           onClick={() => {
-            window.location.href = "/ResetPage";
+            window.location.href = "/resetpage";
           }}
-          className="cursor-pointer  hover:text-orange-500"
+          className="cursor-pointer hover:text-orange-500"
         >
           Forgot your password?
         </p>
 
         <div className="flex flex-row h-auto w-full m gap-3">
           <div className="flex-1 flex justify-center items-start flex-col">
-            <div className=" bg-[#E6E6E6]  h-[2px] w-full "></div>
+            <div className="bg-[#E6E6E6] h-[2px] w-full"></div>
           </div>
           <p className=""> or continue with </p>
           <div className="flex-1 flex justify-center items-start flex-col">
-            <div className="bg-[#E6E6E6]  h-[2px] w-full"></div>
+            <div className="bg-[#E6E6E6] h-[2px] w-full"></div>
           </div>
         </div>
 

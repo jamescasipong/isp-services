@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import HomeMain from "./HomeMain/HomeMain";
 import Contact from "./Contact/Contact";
@@ -7,32 +7,31 @@ import Signup from "./Signup/Signup";
 import Signin from "./Signin/Signin";
 import AccHome from "./AccHome/AccHome";
 import Reset from "./Reset/Reset";
-
-function useLocations(name) {
-  const location = useLocation();
-
-  location.pathname = name;
-
-  console.log(name);
-}
+import { AuthProvider } from "./AuthContext";
+import ProtectedRoute from "./ProtectedRoute"; // Import ProtectedRoute
 
 function App() {
   return (
-    <div className="">
-      <div>
-        <BrowserRouter>
-          <Routes>
-            <Route index element={<HomeMain></HomeMain>}></Route>
-            <Route path="/features" element={<Features></Features>}></Route>
-            <Route path="/contact" element={<Contact></Contact>}></Route>
-            <Route path="/SignUp" element={<Signup />}></Route>
-            <Route path="/signin" element={<Signin />}></Route>
-            <Route path="/home" element={<AccHome />}></Route>
-            <Route path="/ResetPage" element={<Reset />}></Route>
-          </Routes>
-        </BrowserRouter>
-      </div>
-    </div>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route index element={<HomeMain />} />
+          <Route path="/features" element={<Features />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/resetpage" element={<Reset />} />
+          <Route
+            path="/home"
+            element={
+              <ProtectedRoute>
+                <AccHome />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
