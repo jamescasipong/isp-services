@@ -33,17 +33,9 @@ app.post("/signup", async (req, res) => {
     }
 
     // Create a new user account
-    const newUser = new UserAccount({
-      email,
-      password, // This password will be hashed by the middleware
-      firstName,
-      lastName,
-    });
-
-    // Save the new user to the database
+    const newUser = new UserAccount({ email, password, firstName, lastName });
     await newUser.save();
 
-    // Respond with the created user
     res.status(200).json(newUser);
   } catch (error) {
     console.error("Error signing up user:", error.message); // Log detailed error message
