@@ -63,7 +63,7 @@ const Signup = () => {
     setPasswordError("");
 
     axios
-      .post("https://isp-services.vercel.app/signup", {
+      .post("https://optinet-api-dev.vercel.app/signup", {
         email: formData.email,
         firstName: formData.firstName,
         lastName: formData.lastName,
