@@ -21,23 +21,22 @@ app.get("/", async (req, res) => {
     });
 });
 
-app.post("/signup", async (req, res) => {
-  const { email } = req.body;
+// Signin route
+app.post("/signin", async (req, res) => {
+  const { email, password } = req.body;
 
   try {
-    // Check if the user already exists
-    const existingUser = await UserAccount.findOne({ email });
-
-    if (existingUser) {
-      return res.status(400).json({ message: "User already exists" });
+    // Check if the user exists and if the password matches
+    const user = await UserAccount.findOne({ email });
+    if (!user || user.password !== password) {
+      return res.status(401).json("Invalid credentials");
     }
-
-    // If user doesn't exist, create a new user account
-    const newUser = await UserAccount.create(req.body);
-    res.status(200).json(newUser);
+    res.status(200).json("success");
   } catch (error) {
-    console.log(error.message);
-    res.status(500).json({ message: error.message });
+    console.log("Signin error:", error);
+    res
+      .status(500)
+      .json({ message: "Something went wrong. Please try again later." });
   }
 });
 

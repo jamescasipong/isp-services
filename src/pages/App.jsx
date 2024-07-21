@@ -1,5 +1,6 @@
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import { AuthProvider } from "./AuthContext";
 import HomeMain from "./HomeMain/HomeMain";
 import Contact from "./Contact/Contact";
 import Features from "./Features/Features";
@@ -7,8 +8,7 @@ import Signup from "./Signup/Signup";
 import Signin from "./Signin/Signin";
 import AccHome from "./AccHome/AccHome";
 import Reset from "./Reset/Reset";
-import { AuthProvider } from "./AuthContext";
-import ProtectedRoute from "./ProtectedRoute"; // Import ProtectedRoute
+import ProtectedRoute from "./ProtectedRoute"; // Ensure this is properly defined
 
 function App() {
   return (
@@ -20,7 +20,6 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
-          <Route path="/resetpage" element={<Reset />} />
           <Route
             path="/home"
             element={
@@ -29,6 +28,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route path="/resetpage" element={<Reset />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
