@@ -11,18 +11,9 @@ const Signup = () => {
   });
 
   const [isToggle, setToggle] = useState(false);
-
-  const SetToggle = () => {
-    setToggle(true);
-  };
-
   const [isPassword, setType] = useState(true);
-
-  const SetType = () => {
-    setType(!isPassword);
-  };
-
   const [passwordError, setPasswordError] = useState("");
+  const [signupError, setSignupError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,24 +23,7 @@ const Signup = () => {
     }));
   };
 
-  async function myDisplay() {
-    let myPromise = new Promise(function (resolve) {
-      setTimeout(function () {
-        resolve("/signin");
-      }, 1000);
-    });
-    const signin = await myPromise;
-
-    window.location.href = signin;
-  }
-
-  const isPasswordValid = (password) => {
-    const regex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    return regex.test(password);
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!isPasswordValid(formData.password)) {
@@ -59,20 +33,22 @@ const Signup = () => {
       return;
     }
 
-    // Clear any previous password error
     setPasswordError("");
+    setSignupError("");
 
-    axios
-      .post("https://optinet-api-dev.vercel.app/signup", {
-        email: formData.email,
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        password: formData.password,
-      })
-      .then((result) => myDisplay())
-      .catch((err) => alert("It has already been registered"));
+    try {
+      await axios.post("https://optinet-api-dev.vercel.app/signup", formData);
+      // Redirect to signin page
+      window.location.href = "/signin";
+    } catch (err) {
+      setSignupError(err.response?.data?.message || "An error occurred");
+    }
+  };
 
-    //later
+  const isPasswordValid = (password) => {
+    const regex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return regex.test(password);
   };
 
   return (
@@ -139,7 +115,7 @@ const Signup = () => {
                 required
               />
               <i
-                onClick={SetType}
+                onClick={() => setType(!isPassword)}
                 className={`fa-duotone ${
                   isPassword ? "fa-solid fa-unlock" : "fa-solid fa-lock"
                 } absolute left-[92%] top-[40%] opacity-70 cursor-pointer hover:opacity-100`}
@@ -148,10 +124,12 @@ const Signup = () => {
             {passwordError && (
               <p className="text-red-500 text-sm mb-5">{passwordError}</p>
             )}
-            {/* Add other form fields similarly */}
+            {signupError && (
+              <p className="text-red-500 text-sm mb-5">{signupError}</p>
+            )}
           </div>
           <button
-            onClick={SetToggle}
+            onClick={() => setToggle(true)}
             type="submit"
             className="px-4 py-2 text-white rounded-md w-full button"
           >
@@ -163,19 +141,17 @@ const Signup = () => {
           <div className="flex-1 flex justify-center items-start flex-col">
             <div className=" bg-[#E6E6E6]  h-[2px] w-full "></div>
           </div>
-          <p className=""> or continue with </p>
-
+          <p> or continue with </p>
           <div className="flex-1 flex justify-center items-start flex-col">
             <div className="bg-[#E6E6E6]  h-[2px] w-full"></div>
           </div>
         </div>
 
         <div className="px-4 py-2 bg-[#EEEEEE] text-black font-medium rounded-md w-full relative hover:bg-[#999999] transition-colors">
-          <button type="submit" className="font-medium rounded-md w-full">
+          <button type="button" className="font-medium rounded-md w-full">
             <p>Google</p>
           </button>
-
-          <img className="absolute top-2.5 z-[2]" src={Google} alt="" />
+          <img className="absolute top-2.5 z-[2]" src={Google} alt="Google" />
         </div>
 
         <p className="text-[16px] text-black text-center">
