@@ -9,6 +9,12 @@ const Signin = () => {
     password: "",
   });
 
+  const [isPassword, setType] = useState(true);
+
+  const SetType = () => {
+    setType(!isPassword);
+  };
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -36,8 +42,20 @@ const Signin = () => {
         }
       })
       .catch((error) => {
-        console.error("Signin Error:", error);
-        alert("Signin failed. Please try again."); // Generic error message
+        if (error.response) {
+          // Server responded with an error status (4xx or 5xx)
+          if (error.response.status === 401) {
+            alert("Email or password is incorrect");
+          } else {
+            alert("Something went wrong. Please try again later.");
+          }
+        } else if (error.request) {
+          // Request was made but no response received
+          alert("No response from server. Please try again.");
+        } else {
+          // Something else happened
+          alert("Something went wrong. Please try again later.");
+        }
       });
   };
 
@@ -47,7 +65,7 @@ const Signin = () => {
         <h3 className="font-semibold text-[24px]">Sign in to your account</h3>
         <p className="font-normal t-[16px]">Enter your credentials below:</p>
 
-        <form className="w-full" onSubmit={handleSubmit}>
+        <form className="w-full relative" onSubmit={handleSubmit}>
           <div className="flex flex-col w-full">
             <div className="w-full mb-4">
               <input
@@ -62,9 +80,9 @@ const Signin = () => {
               />
             </div>
 
-            <div className={`flex mb-5`}>
+            <div className={`flex mb-5 relative`}>
               <input
-                type="password"
+                type={isPassword ? "password" : "text"}
                 id="password"
                 name="password"
                 placeholder="Enter Password"
@@ -73,8 +91,15 @@ const Signin = () => {
                 className="mt-1 p-2 border rounded-md sm:max-w-[100%] w-full"
                 required
               />
+              <i
+                onClick={SetType}
+                class={`fa-duotone ${
+                  isPassword ? "fa-solid fa-unlock" : "fa-solid fa-lock"
+                } absolute left-[92%] top-[40%] opacity-70 cursor-pointer hover:opacity-100`}
+              ></i>
             </div>
           </div>
+
           <button
             type="submit"
             className="px-4 py-2 text-white rounded-md w-full button"

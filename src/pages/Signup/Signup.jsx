@@ -16,6 +16,14 @@ const Signup = () => {
     setToggle(true);
   };
 
+  const [isPassword, setType] = useState(true);
+
+  const SetType = () => {
+    setType(!isPassword);
+  };
+
+  const [passwordError, setPasswordError] = useState("");
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -35,9 +43,24 @@ const Signup = () => {
     window.location.href = signin;
   }
 
+  const isPasswordValid = (password) => {
+    const regex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return regex.test(password);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you can handle form submission, e.g., send data to backend
+
+    if (!isPasswordValid(formData.password)) {
+      setPasswordError(
+        "Password must contain at least one lowercase letter, one uppercase letter, one numeric digit, one special character, and be at least 8 characters long."
+      );
+      return;
+    }
+
+    // Clear any previous password error
+    setPasswordError("");
 
     axios
       .post("https://optinet-api-dev.vercel.app/signup", {
@@ -104,9 +127,9 @@ const Signup = () => {
               />
             </div>
 
-            <div className={`${isToggle ? "flex" : "hidden"} mb-5`}>
+            <div className={`${isToggle ? "flex" : "hidden"} mb-5 relative`}>
               <input
-                type="password"
+                type={isPassword ? "password" : "text"}
                 id="password"
                 name="password"
                 placeholder="Enter Password"
@@ -115,7 +138,16 @@ const Signup = () => {
                 className="mt-1 p-2 border rounded-md sm:max-w-[100%] w-full"
                 required
               />
+              <i
+                onClick={SetType}
+                className={`fa-duotone ${
+                  isPassword ? "fa-solid fa-unlock" : "fa-solid fa-lock"
+                } absolute left-[92%] top-[40%] opacity-70 cursor-pointer hover:opacity-100`}
+              ></i>
             </div>
+            {passwordError && (
+              <p className="text-red-500 text-sm mb-3">{passwordError}</p>
+            )}
             {/* Add other form fields similarly */}
           </div>
           <button
@@ -131,7 +163,7 @@ const Signup = () => {
           <div className="flex-1 flex justify-center items-start flex-col">
             <div className=" bg-[#E6E6E6]  h-[2px] w-full "></div>
           </div>
-          <p className=""> or continute with </p>
+          <p className=""> or continue with </p>
 
           <div className="flex-1 flex justify-center items-start flex-col">
             <div className="bg-[#E6E6E6]  h-[2px] w-full"></div>
