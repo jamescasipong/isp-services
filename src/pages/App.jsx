@@ -6,6 +6,7 @@ import Features from "./Features/Features";
 import Signup from "./Signup/Signup";
 import Signin from "./Signin/Signin";
 import AccHome from "./AccHome/AccHome";
+import Reset from "./Reset/Reset";
 
 function useLocations(name) {
   const location = useLocation();
@@ -27,6 +28,7 @@ function App() {
             <Route path="/SignUp" element={<Signup />}></Route>
             <Route path="/signin" element={<Signin />}></Route>
             <Route path="/home" element={<AccHome />}></Route>
+            <Route path="/ResetPage" element={<Reset />}></Route>
           </Routes>
         </BrowserRouter>
       </div>

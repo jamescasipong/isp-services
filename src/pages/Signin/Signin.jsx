@@ -79,9 +79,17 @@ const Signin = () => {
             type="submit"
             className="px-4 py-2 text-white rounded-md w-full button"
           >
-            Sign Ins
+            Sign In
           </button>
         </form>
+        <p
+          onClick={() => {
+            window.location.href = "/ResetPage";
+          }}
+          className="cursor-pointer  hover:text-orange-500"
+        >
+          Forgot your password?
+        </p>
 
         <div className="flex flex-row h-auto w-full m gap-3">
           <div className="flex-1 flex justify-center items-start flex-col">
