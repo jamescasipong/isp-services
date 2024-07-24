@@ -6,7 +6,7 @@ const { authCon } = require("../Controllers/authController");
 router.use(
   cors({
     credentials: true,
-    origin: "http://localhost:5173" || "https://optinet-official.vercel.app/",
+    origin: "https://optinet-official.vercel.app/",
   })
 );
 
