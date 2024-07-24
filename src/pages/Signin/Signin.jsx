@@ -43,7 +43,10 @@ const Signin = () => {
       })
       .then((response) => {
         const { data } = response;
-        if (data === "success") {
+
+        login();
+        navigate();
+        /**if (data === "success") {
           login();
           navigate("/home");
         } else if (data == "Invalid email") {
@@ -68,9 +71,8 @@ const Signin = () => {
           }));
 
           alert("Email or password is incorrect");
-        } else {
-          alert(data); // Show error message from backend
-        }
+        } else {**/
+        //alert(data); // Show error message from backend
       })
       .catch((error) => {
         if (error.response) {

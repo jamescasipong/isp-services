@@ -42,13 +42,14 @@ const Signup = () => {
     setSignupError("");
 
     try {
-      const response = await axios.post("/signup", {
+      await axios.post("/signup", {
         email,
         firstName,
         lastName,
         password,
       });
 
+      // Redirect to signin page
       navigate("/signin");
     } catch (err) {
       setSignupError(err.response?.data?.message || "An error occurred");

@@ -1,3 +1,4 @@
+// App.js
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./AuthContext";
@@ -13,8 +14,8 @@ import AdminHome from "./Admin/AdminHome";
 import AdminSignIn from "./Admin/AdminSignIn";
 import axios from "axios";
 
-//axios.defaults.baseURL = "http://localhost:3001/";
-axios.defaults.baseURL = "https://optinet-api-dev.vercel.app/";
+axios.defaults.baseURL = "http://localhost:3001/";
+//axios.defaults.baseURL = "https://optinet-api-dev.vercel.app/";
 axios.defaults.withCredentials = true;
 
 function App() {
@@ -27,7 +28,6 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
-
           <Route path="/adminhome" element={<AdminHome />} />
           <Route path="/admin" element={<AdminSignIn />} />
           <Route

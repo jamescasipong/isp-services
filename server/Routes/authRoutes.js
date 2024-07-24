@@ -7,16 +7,16 @@ const userController = require("../Controllers/userController");
 router.use(
   cors({
     credentials: true,
-    origin: "http://localhost:5173" || "https://optinet-official.vercel.app/",
+    origin: "https://optinet-official.vercel.app/",
   })
 );
 
 router.get("/", authCon);
 
-router.post("/signin", userController.signIn);
+//router.post("/api/signin", userController.signIn);
 
 //router.get("/", userController.datas);
 
-router.post("/signup", userController.signUp);
+//router.post("/api/signup", userController.signUp);
 
 module.exports = router;

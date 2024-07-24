@@ -11,7 +11,7 @@ const cookieParser = require("cookie-parser");
 app.use(express.json());
 
 app.use("/", require("./Routes/authRoutes"));
-//app.use("/api/user", userRoute);
+app.use("/", userRoute);
 app.use(cookieParser());
 app.use("/api/admin", adminRoute);
 

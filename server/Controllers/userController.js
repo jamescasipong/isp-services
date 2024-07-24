@@ -27,26 +27,22 @@ exports.signIn = async (req, res) => {
       return res.status(200).json("Invalid email");
     }
 
-    if (match) {
-      jwt.sign(
-        {
-          id: user._id,
-          email: user.email,
-          firstName: user.firstName,
-          lastName: user.lastName,
-        },
-        process.env.JWT_SECRET,
-        {},
-        (err, token) => {
-          if (err) throw err;
-          res.cookie("token", token).json(user);
-        }
-      );
-    } else {
-      return res.status(200).json("Invalid password");
+    if (!match) {
+      return res.status(400).json("Invalid password");
     }
 
-    res.status(200).json("success");
+    const token = jwt.sign(
+      {
+        id: user._id,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" } // Optional: Token expiration time
+    );
+
+    res.cookie("token", token, { httpOnly: true }).json(user);
   } catch (error) {
     console.log("Signin error:", error);
     res
