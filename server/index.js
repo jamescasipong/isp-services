@@ -4,16 +4,15 @@ const cors = require("cors");
 const config = require("./Config/config");
 require("dotenv").config();
 const app = express();
-const bcrypt = require("bcrypt");
 const adminRoute = require("./Routes/adminRoute");
 const userRoute = require("./Routes/userRoute");
+const cookieParser = require("cookie-parser");
 
 app.use(express.json());
 
-app.use(cors());
-
-//app.use("/", require("./Routes/authRoutes"));
-app.use("/api/user", userRoute);
+app.use("/", require("./Routes/authRoutes"));
+//app.use("/api/user", userRoute);
+app.use(cookieParser());
 app.use("/api/admin", adminRoute);
 
 // Connect to MongoDB

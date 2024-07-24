@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Google } from "../../assets";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     firstName: "",
@@ -26,6 +29,8 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const { email, firstName, lastName, password } = formData;
+
     if (!isPasswordValid(formData.password)) {
       setPasswordError(
         "Password must contain at least one lowercase letter, one uppercase letter, one numeric digit, one special character, and be at least 8 characters long."
@@ -37,13 +42,14 @@ const Signup = () => {
     setSignupError("");
 
     try {
-      await axios.post(
-        "https://optinet-api-dev.vercel.app/api/user/signup",
-        formData
-      );
-      console.log(email + formData.email);
-      // Redirect to signin page
-      window.location.href = "/signin";
+      const response = await axios.post("/signup", {
+        email,
+        firstName,
+        lastName,
+        password,
+      });
+
+      navigate("/signin");
     } catch (err) {
       setSignupError(err.response?.data?.message || "An error occurred");
     }

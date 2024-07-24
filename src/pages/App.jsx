@@ -11,6 +11,11 @@ import Reset from "./Reset/Reset";
 import ProtectedRoute from "./ProtectedRoute"; // Ensure this is properly defined
 import AdminHome from "./Admin/AdminHome";
 import AdminSignIn from "./Admin/AdminSignIn";
+import axios from "axios";
+
+//axios.defaults.baseURL = "http://localhost:3001/";
+axios.defaults.baseURL = "https://optinet-official.vercel.app/";
+axios.defaults.withCredentials = true;
 
 function App() {
   return (

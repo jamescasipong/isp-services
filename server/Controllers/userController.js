@@ -1,5 +1,6 @@
 const UserAccount = require("./Users");
-const bcrypt = require("bcrypt");
+const { hashPasword, comparePassword } = require("../Helpers/auth");
+const jwt = require("jsonwebtoken");
 
 exports.datas = async (req, res) => {
   try {
@@ -15,9 +16,10 @@ exports.signIn = async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await UserAccount.findOne({ email });
-    const pass = await UserAccount.findOne({ password });
 
-    if (!user && !pass) {
+    const match = comparePassword(password, user.password);
+
+    if (!user && !match) {
       return res.status(200).json("Both incorrect");
     }
 
@@ -25,7 +27,22 @@ exports.signIn = async (req, res) => {
       return res.status(200).json("Invalid email");
     }
 
-    if (!pass) {
+    if (match) {
+      jwt.sign(
+        {
+          id: user._id,
+          email: user.email,
+          firstName: user.firstName,
+          lastName: user.lastName,
+        },
+        process.env.JWT_SECRET,
+        {},
+        (err, token) => {
+          if (err) throw err;
+          res.cookie("token", token).json(user);
+        }
+      );
+    } else {
       return res.status(200).json("Invalid password");
     }
 
@@ -39,7 +56,7 @@ exports.signIn = async (req, res) => {
 };
 
 exports.signUp = async (req, res) => {
-  const { email } = req.body;
+  const { email, firstName, lastName, password } = req.body;
 
   try {
     const existingUser = await UserAccount.findOne({ email });
@@ -48,7 +65,16 @@ exports.signUp = async (req, res) => {
       return res.status(400).json({ message: "User already exists" });
     }
 
-    const newUser = await UserAccount.create(req.body);
+    const hashedPassword = await hashPasword(password);
+
+    console.log(hashedPassword);
+
+    const newUser = await UserAccount.create({
+      email,
+      firstName,
+      lastName,
+      password: hashedPassword,
+    });
     res.status(200).json(newUser);
   } catch (error) {
     console.error("Signup error:", error);

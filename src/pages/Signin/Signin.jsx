@@ -37,7 +37,7 @@ const Signin = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("https://optinet-api-dev.vercel.app/api/user/signin", {
+      .post("/signin", {
         email: formData.email,
         password: formData.password,
       })
