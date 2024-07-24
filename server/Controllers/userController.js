@@ -1,5 +1,5 @@
-const path = require("path");
-const UserAccount = require(path.resolve(__dirname, "../Models/Users"));
+const UserAccount = require("./Users");
+const bcrypt = require("bcrypt");
 
 exports.datas = async (req, res) => {
   try {
