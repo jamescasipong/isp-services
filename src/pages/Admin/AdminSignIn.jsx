@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Google } from "../../assets"; // Assuming you have Google logo imported correctly
 import { useAuth } from "../AuthContext"; // Import Auth context
 
-const Signin = () => {
+const AdminSignIn = () => {
   const [formData, setFormData] = useState({
-    email: "",
+    username: "",
     password: "",
   });
 
@@ -18,7 +17,7 @@ const Signin = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/home"); // Redirect to home if already authenticated
+      navigate("/adminhome"); // Redirect to home if already authenticated
     }
   }, [isAuthenticated, navigate]);
 
@@ -36,38 +35,17 @@ const Signin = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     axios
-      .post("http://localhost:3001/api/user/signin", {
-        email: formData.email,
+      .post("https://optinet-api-dev.vercel.app/adminusers", {
+        username: formData.username,
         password: formData.password,
       })
       .then((response) => {
         const { data } = response;
         if (data === "success") {
-          login();
-          navigate("/home");
-        } else if (data == "Invalid email") {
-          console.log("Email");
-          setFormData((prev) => ({
-            ...prev,
-            email: "",
-          }));
-
-          alert("Email is incorrect");
-        } else if (data == "Invalid password") {
-          setFormData((prev) => ({
-            ...prev,
-            password: "",
-          }));
-
-          alert("Password is incorrect");
-        } else if (data == "Both incorrect") {
-          setFormData(() => ({
-            email: "",
-            password: "",
-          }));
-
-          alert("Email or password is incorrect");
+          login(); // Update auth state to logged in
+          navigate("/adminhome"); // Redirect to home or another page upon successful signin
         } else {
           alert(data); // Show error message from backend
         }
@@ -97,10 +75,10 @@ const Signin = () => {
           <div className="flex flex-col w-full">
             <div className="w-full mb-4">
               <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Enter Email"
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Enter Username"
                 value={formData.email}
                 onChange={handleChange}
                 className="mt-1 p-2 border rounded-md sm:max-w-[100%] w-full"
@@ -135,42 +113,9 @@ const Signin = () => {
             Sign In
           </button>
         </form>
-        <p
-          onClick={() => {
-            window.location.href = "/resetpage";
-          }}
-          className="cursor-pointer hover:text-orange-500"
-        >
-          Forgot your password?
-        </p>
-
-        <div className="flex flex-row h-auto w-full m gap-3">
-          <div className="flex-1 flex justify-center items-start flex-col">
-            <div className="bg-[#E6E6E6] h-[2px] w-full"></div>
-          </div>
-          <p className=""> or continue with </p>
-          <div className="flex-1 flex justify-center items-start flex-col">
-            <div className="bg-[#E6E6E6] h-[2px] w-full"></div>
-          </div>
-        </div>
-
-        <div className="px-4 py-2 bg-[#EEEEEE] text-black font-medium rounded-md w-full relative hover:bg-[#999999] transition-colors">
-          <button type="button" className="font-medium rounded-md w-full">
-            <p>Google</p>
-          </button>
-          <img className="absolute top-2.5 z-[2]" src={Google} alt="Google" />
-        </div>
-
-        <p className="text-[16px] text-black text-center">
-          <span className="text-[#828282]">
-            By clicking continue, you agree to our
-          </span>{" "}
-          Terms of <br className="ss:block hidden" /> Service{" "}
-          <span className="text-[#828282]">and</span> Privacy Policy
-        </p>
       </div>
     </div>
   );
 };
 
-export default Signin;
+export default AdminSignIn;

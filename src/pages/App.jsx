@@ -9,6 +9,8 @@ import Signin from "./Signin/Signin";
 import AccHome from "./AccHome/AccHome";
 import Reset from "./Reset/Reset";
 import ProtectedRoute from "./ProtectedRoute"; // Ensure this is properly defined
+import AdminHome from "./Admin/AdminHome";
+import AdminSignIn from "./Admin/AdminSignIn";
 
 function App() {
   return (
@@ -20,6 +22,9 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
+
+          <Route path="/adminhome" element={<AdminHome />} />
+          <Route path="/admin" element={<AdminSignIn />} />
           <Route
             path="/home"
             element={
