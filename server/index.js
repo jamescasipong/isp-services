@@ -10,7 +10,9 @@ const userRoute = require("./Routes/userRoute");
 
 app.use(express.json());
 
-app.use("/", require("./Routes/authRoutes"));
+app.use(cors());
+
+//app.use("/", require("./Routes/authRoutes"));
 app.use("/api/user", userRoute);
 app.use("/api/admin", adminRoute);
 

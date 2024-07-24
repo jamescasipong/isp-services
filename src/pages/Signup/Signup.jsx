@@ -37,10 +37,7 @@ const Signup = () => {
     setSignupError("");
 
     try {
-      await axios.post(
-        "https://optinet-api-dev.vercel.app/api/user/signup",
-        formData
-      );
+      await axios.post("https://optinet-api-dev.vercel.app/signup", formData);
       console.log(email + formData.email);
       // Redirect to signin page
       window.location.href = "/signin";
