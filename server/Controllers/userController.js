@@ -1,7 +1,7 @@
 const UserAccount = require("./Users");
 const { hashPasword, comparePassword } = require("../Helpers/auth");
 const jwt = require("jsonwebtoken");
-const config = require("../Config/config");
+require("dotenv").config();
 
 exports.datas = async (req, res) => {
   try {
@@ -39,7 +39,7 @@ exports.signIn = async (req, res) => {
         firstName: user.firstName,
         lastName: user.lastName,
       },
-      config.key,
+      process.env.JWT_KEY,
       { expiresIn: "1h" } // Optional: Token expiration time
     );
 
