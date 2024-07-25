@@ -7,7 +7,7 @@ const userController = require("../Controllers/userController");
 router.use(
   cors({
     credentials: true,
-    origin: "http://optinet-official.vercel.app/",
+    origin: "https://optinet-official.vercel.app",
   })
 );
 
