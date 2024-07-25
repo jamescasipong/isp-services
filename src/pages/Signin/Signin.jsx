@@ -37,7 +37,7 @@ const Signin = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("/signin", {
+      .post("/api/signin", {
         email: formData.email,
         password: formData.password,
       })
