@@ -4,7 +4,7 @@ const userController = require("../Controllers/userController");
 
 router.post("/signin", userController.signIn);
 
-//router.get("/", userController.datas);
+router.get("/", userController.datas);
 
 router.post("/signup", userController.signUp);
 
