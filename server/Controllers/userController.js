@@ -20,7 +20,7 @@ exports.signIn = async (req, res) => {
     const match = comparePassword(password, user.password);
 
     if (!user && !match) {
-      return res.status(200).json("Both incorrect");
+      return res.status(200).json("Both incorrects");
     }
 
     if (!user) {
