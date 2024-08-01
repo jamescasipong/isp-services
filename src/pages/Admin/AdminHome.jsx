@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../AuthContext";
 
 const AdminHome = () => {
   const [items, setItems] = useState([]);
   const navigate = useNavigate();
-  const { isAuthenticated, logout } = useAuth();
 
   const handleLogout = () => {
-    logout();
     navigate("/admin"); // Redirect to admin sign-in page after logout
   };
 
@@ -24,7 +21,7 @@ const AdminHome = () => {
       });
   }, []); // Empty dependency array ensures useEffect runs only once on mount
 
-  if (!isAuthenticated) {
+  if (!user) {
     // Redirect to admin sign-in page if not authenticated
     navigate("/admin");
     return null; // Or render a loading indicator or an error message

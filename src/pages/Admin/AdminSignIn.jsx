@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../AuthContext"; // Import Auth context
 
 const AdminSignIn = () => {
   const [formData, setFormData] = useState({
@@ -11,15 +10,7 @@ const AdminSignIn = () => {
 
   const [isPassword, setType] = useState(true);
 
-  const { isAuthenticated, login } = useAuth(); // Use auth context
-
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate("/adminhome"); // Redirect to home if already authenticated
-    }
-  }, [isAuthenticated, navigate]);
 
   const SetType = () => {
     setType(!isPassword);

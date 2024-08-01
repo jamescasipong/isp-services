@@ -1,43 +1,23 @@
-import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../AuthContext";
-import axios from "axios";
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../AuthContext";
+import useLogout from "../useLogout";
 
 const AccHome = () => {
-  const [user, setUser] = useState(null); // State to hold user data
-  const { logout } = useAuth();
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    // Fetch user data from the API
-    const fetchUserData = async () => {
-      try {
-        const response = await axios.get(
-          "https://optinet-api-dev.vercel.app/user"
-        ); // Replace with your API endpoint
-        setUser(response.data);
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-      }
-    };
-
-    fetchUserData();
-  }, []);
-
-  const handleLogout = () => {
-    logout();
-    navigate("/");
-  };
+  const logout = useLogout();
 
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <div className="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">
         <div className="flex flex-row">
           <h1 className="text-2xl font-bold mb-4 flex-1">
-            Welcome, {user ? user.firstName : "Loading..."}!
+            Welcome {user.firstName} {user.lastName}!
           </h1>
+
           <button
-            onClick={handleLogout}
+            onClick={logout}
             className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 justify-end items-end mb-4"
           >
             Logout

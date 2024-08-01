@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Google } from "../../assets"; // Assuming you have Google logo imported correctly
-import { useAuth } from "../AuthContext"; // Import Auth context
 
 const Signin = () => {
   const [formData, setFormData] = useState({
@@ -11,16 +10,7 @@ const Signin = () => {
   });
 
   const [isPassword, setType] = useState(true);
-
-  const { isAuthenticated, login } = useAuth(); // Use auth context
-
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate("/home"); // Redirect to home if already authenticated
-    }
-  }, [isAuthenticated, navigate]);
 
   const SetType = () => {
     setType(!isPassword);
@@ -44,48 +34,15 @@ const Signin = () => {
       .then((response) => {
         const { data } = response;
 
-        login();
-        navigate();
-        /**if (data === "success") {
-          login();
+        if (data.success) {
           navigate("/home");
-        } else if (data == "Invalid email") {
-          console.log("Email");
-          setFormData((prev) => ({
-            ...prev,
-            email: "",
-          }));
-
-          alert("Email is incorrect");
-        } else if (data == "Invalid password") {
-          setFormData((prev) => ({
-            ...prev,
-            password: "",
-          }));
-
-          alert("Password is incorrect");
-        } else if (data == "Both incorrect") {
-          setFormData(() => ({
-            email: "",
-            password: "",
-          }));
-
-          alert("Email or password is incorrect");
-        } else {**/
-        //alert(data); // Show error message from backend
+          localStorage.setItem("authToken", data);
+        } else {
+          alert(data.message || "An unknown error occurred.");
+        }
       })
       .catch((error) => {
-        if (error.response) {
-          if (error.response.status === 401) {
-            alert("Email or password is incorrect");
-          } else {
-            alert("Something went wrong. Please try again later.");
-          }
-        } else if (error.request) {
-          alert("No response from server. Please try again.");
-        } else {
-          alert("Something went wrong. Please try again later.");
-        }
+        // Error handling logic here
       });
   };
 
@@ -93,7 +50,7 @@ const Signin = () => {
     <div className="h-screen max-w-[100%] items-center flex justify-center sm:px-0 px-3">
       <div className="ss:w-[550px] flex flex-col items-center gap-3">
         <h3 className="font-semibold text-[24px]">Sign in to your account</h3>
-        <p className="font-normal t-[16px]">Enter your credentials below:</p>
+        <p className="font-normal text-[16px]">Enter your credentials below:</p>
 
         <form className="w-full relative" onSubmit={handleSubmit}>
           <div className="flex flex-col w-full">
@@ -110,7 +67,7 @@ const Signin = () => {
               />
             </div>
 
-            <div className={`flex mb-5 relative`}>
+            <div className="flex mb-5 relative">
               <input
                 type={isPassword ? "password" : "text"}
                 id="password"
@@ -146,11 +103,11 @@ const Signin = () => {
           Forgot your password?
         </p>
 
-        <div className="flex flex-row h-auto w-full m gap-3">
+        <div className="flex flex-row h-auto w-full gap-3">
           <div className="flex-1 flex justify-center items-start flex-col">
             <div className="bg-[#E6E6E6] h-[2px] w-full"></div>
           </div>
-          <p className=""> or continue with </p>
+          <p> or continue with </p>
           <div className="flex-1 flex justify-center items-start flex-col">
             <div className="bg-[#E6E6E6] h-[2px] w-full"></div>
           </div>

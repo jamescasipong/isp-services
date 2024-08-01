@@ -6,6 +6,13 @@ require("dotenv").config();
 exports.datas = async (req, res) => {
   try {
     const users = await UserAccount.find();
+    console.log("Fetched Users:", users); // Debugging line to see fetched users
+
+    /*const result = users.map((item) => ({
+      email: item.email,
+      password: item.password,
+      // Remove password from response if not needed
+    }));*/
     res.json(users);
   } catch (error) {
     console.error("Error fetching users:", error);
@@ -13,23 +20,41 @@ exports.datas = async (req, res) => {
   }
 };
 
+exports.getProfile = (req, res) => {
+  const { token } = req.cookies;
+
+  if (token) {
+    jwt.verify(token, process.env.JWT_KEY, {}, (err, user) => {
+      if (err) {
+        console.error("JWT verification error:", err);
+        return res.status(401).json({ message: "Invalid token" });
+      }
+      res.json(user);
+    });
+  } else {
+    console.log("Token not provided");
+    res.status(401).json({ message: "No token provided" });
+  }
+};
+
+exports.logout = (req, res) => {
+  res.cookie("token", "", { maxAge: 0 });
+  res.json({ message: "Logged out successfully" });
+};
+
 exports.signIn = async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await UserAccount.findOne({ email });
 
-    const match = comparePassword(password, user.password);
-
-    if (!user && !match) {
-      return res.status(200).json("Both incorrects");
-    }
-
     if (!user) {
-      return res.status(200).json("Invalid email");
+      return res.status(400).json({ message: "Invalid email" });
     }
+
+    const match = await comparePassword(password, user.password);
 
     if (!match) {
-      return res.status(400).json("Invalid password");
+      return res.status(400).json({ message: "Invalid password" });
     }
 
     const token = jwt.sign(
@@ -40,12 +65,12 @@ exports.signIn = async (req, res) => {
         lastName: user.lastName,
       },
       process.env.JWT_KEY,
-      { expiresIn: "1h" } // Optional: Token expiration time
+      { expiresIn: "1h" }
     );
 
-    res.cookie("token", token, { httpOnly: true }).json(user);
+    res.cookie("token", token).json({ user, success: true });
   } catch (error) {
-    console.log("Signin error:", error);
+    console.error("Signin error:", error);
     res
       .status(500)
       .json({ message: "Something went wrong. Please try again later." });

@@ -1,32 +1,40 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import ProtectedRoute from "./ProtectedRoute";
 
-const AuthContext = createContext();
+export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const storedAuth = localStorage.getItem("isAuthenticated");
-    if (storedAuth) {
-      setIsAuthenticated(JSON.parse(storedAuth));
-    }
-  }, []);
+    const fetchUser = async () => {
+      try {
+        const { data } = await axios.get("/api/profile", {
+          withCredentials: true,
+        });
+        return setUser(data);
+      } catch (error) {
+        console.error("Error fetching profile:", error);
+        return setUser(null);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const login = () => {
-    setIsAuthenticated(true);
-    localStorage.setItem("isAuthenticated", JSON.stringify(true));
-  };
+    fetchUser();
+  }, [navigate]);
 
-  const logout = () => {
-    setIsAuthenticated(false);
-    localStorage.removeItem("isAuthenticated");
-  };
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ user, setUser }}>
       {children}
     </AuthContext.Provider>
   );
 };
-
-export const useAuth = () => useContext(AuthContext);
