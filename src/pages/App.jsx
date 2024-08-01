@@ -14,7 +14,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import axios from "axios";
 
 //axios.defaults.baseURL = "http://localhost:3001";
-axios.defaults.baseURL = "https://optinet-api-dev.vercel.app";
+axios.defaults.baseURL = "http://optinet-api-dev.vercel.app";
 axios.defaults.withCredentials = true;
 
 function App() {
