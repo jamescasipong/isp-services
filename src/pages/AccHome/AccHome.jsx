@@ -1,12 +1,35 @@
 import { useNavigate } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../AuthContext";
 import useLogout from "../useLogout";
+import axios from "axios";
 
 const AccHome = () => {
   const { user } = useContext(AuthContext);
+  const [data, setData] = useState([]);
   const navigate = useNavigate();
   const logout = useLogout();
+
+  useEffect(() => {
+    if (!user || !user.id) {
+      console.error("User ID is not defined");
+      return;
+    }
+
+    axios
+      .get(`api/user/id/${user.id}`)
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((error) => {
+        // Check if error.response exists for detailed server response
+        const errorMessage = error.response
+          ? `Error: ${error.response.status} - ${error.response.data}`
+          : `Error: ${error.message}`;
+        console.error("There was an error fetching the data:", errorMessage);
+      });
+  }, []);
+  // Add user.id as a dependency
 
   return (
     <div className="min-h-screen bg-gray-100 p-6">
@@ -27,7 +50,7 @@ const AccHome = () => {
           <div className="bg-blue-50 p-4 rounded-lg shadow-md">
             <h2 className="text-lg font-semibold mb-2">Dashboard</h2>
             <button
-              onClick={() => navigate("/dashboard")}
+              onClick={() => navigate("/adminhome")}
               className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
             >
               Go to Dashboard

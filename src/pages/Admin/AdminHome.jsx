@@ -21,21 +21,15 @@ const AdminHome = () => {
       });
   }, []); // Empty dependency array ensures useEffect runs only once on mount
 
-  if (!user) {
-    // Redirect to admin sign-in page if not authenticated
-    navigate("/admin");
-    return null; // Or render a loading indicator or an error message
-  }
-
   return (
     <div className="container mx-auto px-4 py-8">
       <h2 className="text-2xl font-bold mb-4">User List</h2>
-      <button
+      {/*<button
         onClick={handleLogout}
         className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 mb-4"
       >
         Logout
-      </button>
+      </button>*/}
       <div className="overflow-x-auto">
         <div className="shadow-md overflow-hidden border-b border-gray-200 sm:rounded-lg">
           <table className="min-w-full divide-y divide-gray-200">
@@ -50,9 +44,9 @@ const AdminHome = () => {
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Last Name
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                {/*<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Password
-                </th>
+                </th>*/}
                 {/* Add more table headers as needed */}
               </tr>
             </thead>
@@ -71,7 +65,7 @@ const AdminHome = () => {
                     <div className="text-sm text-gray-900">{item.lastName}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-900">{item.password}</div>
+                    {/*<div className="text-sm text-gray-900">{item.password}</div>*/}
                   </td>
                   {/* Add more td for additional data */}
                 </tr>

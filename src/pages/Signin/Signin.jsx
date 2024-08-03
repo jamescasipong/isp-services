@@ -45,13 +45,20 @@ const Signin = () => {
 
         if (data.success) {
           navigate("/home");
-          localStorage.setItem("authToken", data);
         } else {
           alert(data.message || "An unknown error occurred.");
         }
       })
       .catch((error) => {
-        // Error handling logic here
+        const errorMessage =
+          error.response?.data?.message || "An unknown error occurred.";
+        if (errorMessage === "Invalid email") {
+          alert("Invalid email");
+        } else if (errorMessage === "Invalid password") {
+          alert("Invalid password");
+        } else {
+          alert(errorMessage);
+        }
       });
   };
 

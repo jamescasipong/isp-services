@@ -1,11 +1,11 @@
-import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AuthProvider } from "./AuthContext";
+import { AuthProvider, AuthContext } from "./AuthContext";
 import HomeMain from "./HomeMain/HomeMain";
 import Contact from "./Contact/Contact";
 import Features from "./Features/Features";
 import Signup from "./Signup/Signup";
 import Signin from "./Signin/Signin";
+import AdminHome from "./Admin/AdminHome";
 import AccHome from "./AccHome/AccHome";
 import Reset from "./Reset/Reset";
 
@@ -26,6 +26,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
+          <Route path="/adminhome" element={<AdminHome />} />
 
           <Route
             path="/home"

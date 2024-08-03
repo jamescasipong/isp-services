@@ -1,6 +1,7 @@
 const UserAccount = require("./Users");
 const { hashPasword, comparePassword } = require("../Helpers/auth");
 const jwt = require("jsonwebtoken");
+const axios = require("axios");
 require("dotenv").config();
 
 exports.datas = async (req, res) => {
@@ -17,6 +18,57 @@ exports.datas = async (req, res) => {
   } catch (error) {
     console.error("Error fetching users:", error);
     res.status(500).json({ message: "Error fetching users" });
+  }
+};
+
+exports.Id = async (req, res) => {
+  try {
+    // Fetch all users
+    const users = await UserAccount.find({}, "_id"); // Only select the _id field
+    console.log("Fetched User IDs:", users); // Debugging line to see fetched user IDs
+
+    // Map the result to extract only the user IDs
+    const userIds = users.map((user) => user._id);
+
+    // Respond with the list of user IDs
+    res.json(userIds);
+  } catch (error) {
+    console.error("Error fetching user IDs:", error);
+    res.status(500).json({ message: "Error fetching user IDs" });
+  }
+};
+
+exports.oneId = async (req, res) => {
+  try {
+    // Fetch the user by lastName
+    const user = await UserAccount.findOne({ _id: req.params.id });
+    console.log("Fetched User:", user); // Debugging line to see fetched user
+
+    // Check if the user is found
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    // Respond with the user data
+    res.json(user);
+  } catch (error) {
+    console.error("Error fetching user by lastName:", error);
+    res.status(500).json({ message: "Error fetching user" });
+  }
+};
+
+exports.firstName = async (req, res) => {
+  try {
+    // Fetch the user by lastName
+    const user = await UserAccount.find({ firstName: req.params.firstname });
+    console.log("Fetched User:", user); // Debugging line to see fetched user
+
+    // Check if the user is found
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    // Respond with the user data
+    res.json(user);
+  } catch (error) {
+    console.error("Error fetching user by lastName:", error);
+    res.status(500).json({ message: "Error fetching user" });
   }
 };
 
@@ -53,11 +105,11 @@ exports.signIn = async (req, res) => {
   try {
     const user = await UserAccount.findOne({ email });
 
+    const match = await comparePassword(password, user.password);
+
     if (!user) {
       return res.status(400).json({ message: "Invalid email" });
     }
-
-    const match = await comparePassword(password, user.password);
 
     if (!match) {
       return res.status(400).json({ message: "Invalid password" });
