@@ -174,7 +174,7 @@ exports.signIn = async (req, res) => {
 };
 
 exports.signUp = async (req, res) => {
-  const { email, firstName, lastName, password } = req.body;
+  const { email, firstName, lastName, password, ipAdd } = req.body;
 
   try {
     // Fetch public IP address
@@ -200,7 +200,7 @@ exports.signUp = async (req, res) => {
       lastName,
       password: hashedPassword,
       accountId: newAccountId,
-      ipAdd: publicIp, // Now publicIp should be correctly updated
+      ipAdd, // Now publicIp should be correctly updated
     });
 
     res.status(200).json(newUser);
