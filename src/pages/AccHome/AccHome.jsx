@@ -6,7 +6,8 @@ import axios from "axios";
 
 const AccHome = () => {
   const { user } = useContext(AuthContext);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
+  const [ipData, setIp] = useState({});
   const navigate = useNavigate();
   const logout = useLogout();
 
@@ -22,21 +23,36 @@ const AccHome = () => {
         setData(response.data);
       })
       .catch((error) => {
-        // Check if error.response exists for detailed server response
         const errorMessage = error.response
           ? `Error: ${error.response.status} - ${error.response.data}`
           : `Error: ${error.message}`;
         console.error("There was an error fetching the data:", errorMessage);
       });
-  }, []);
-  // Add user.id as a dependency
+  }, [user]);
+
+  useEffect(() => {
+    if (data.ipAdd) {
+      axios
+        .get(`https://ipinfo.io/${data.ipAdd}?token=78faf81d1e8caf`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((data) => setIp(data))
+        .catch((error) =>
+          console.error("There was an error fetching IP info:", error)
+        );
+    }
+  }, [data.ipAdd]);
 
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <div className="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">
         <div className="flex flex-row">
           <h1 className="text-2xl font-bold mb-4 flex-1">
-            Welcome {data.firstName} {data.lastName}!
+            Welcome {data.firstName} {data.lastName}! {data.ip}
           </h1>
 
           <button

@@ -3,6 +3,10 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const config = require("./Config/config");
 require("dotenv").config();
+//const axios = require("axios");
+
+require("dotenv").config({ path: "./.env.development" });
+
 const app = express();
 const adminRoute = require("./Routes/adminRoute");
 const userRoute = require("./Routes/userRoute");

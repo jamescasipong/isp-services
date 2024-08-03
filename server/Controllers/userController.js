@@ -1,8 +1,21 @@
 const UserAccount = require("./Users");
 const { hashPasword, comparePassword } = require("../Helpers/auth");
 const jwt = require("jsonwebtoken");
-const axios = require("axios");
 require("dotenv").config();
+const axios = require("axios");
+
+let publicIp = "";
+const getIpd = async () => {
+  try {
+    const response = await axios.get("https://api.ipify.org?format=json");
+    publicIp = response.data.ip;
+    console.log(publicIp);
+  } catch (error) {
+    console.error("Error fetching public IP address:", error);
+  }
+};
+
+getIpd();
 
 exports.datas = async (req, res) => {
   try {
@@ -164,6 +177,9 @@ exports.signUp = async (req, res) => {
   const { email, firstName, lastName, password } = req.body;
 
   try {
+    // Fetch public IP address
+    await getIpd();
+
     const existingUser = await UserAccount.findOne({ email });
 
     if (existingUser) {
@@ -178,14 +194,13 @@ exports.signUp = async (req, res) => {
 
     const hashedPassword = await hashPasword(password);
 
-    console.log(hashedPassword);
-
     const newUser = await UserAccount.create({
       email,
       firstName,
       lastName,
       password: hashedPassword,
       accountId: newAccountId,
+      ipAdd: publicIp, // Now publicIp should be correctly updated
     });
 
     res.status(200).json(newUser);

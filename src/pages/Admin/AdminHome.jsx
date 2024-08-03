@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LoadingUI from "../../components/LoadingUI";
+import Button from "../../components/Button";
 
 const AdminHome = () => {
   const [items, setItems] = useState([]);
@@ -54,6 +55,10 @@ const AdminHome = () => {
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Last Name
                 </th>
+
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Delete Row
+                </th>
                 {/*<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Password
                 </th>*/}
@@ -73,6 +78,12 @@ const AdminHome = () => {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-900">{item.lastName}</div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <Button
+                      link="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                      label="Delete"
+                    ></Button>
                   </td>
                   {/*<td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-900">{item.password}</div>
