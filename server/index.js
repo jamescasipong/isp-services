@@ -11,8 +11,10 @@ const cookieParser = require("cookie-parser");
 app.use(express.json());
 app.use(cookieParser());
 
-app.use("/", require("./Routes/authRoutes"));
+//app.use("/", require("./Routes/authRoutes"));
 app.use("/api", userRoute);
+
+app.use(cors());
 
 app.use("/api/admin", adminRoute);
 
