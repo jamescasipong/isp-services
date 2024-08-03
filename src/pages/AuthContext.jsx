@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import LoadingUI from "../components/LoadingUI"; // Assuming this is a loading spinner or similar component
+import LoadingUI from "../components/LoadingUI";
 
 export const AuthContext = createContext({});
 
