@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Google } from "../../assets";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -11,21 +11,6 @@ const Signup = () => {
     lastName: "",
     password: "",
   });
-
-  const [ipAddress, setIpAddress] = useState("");
-
-  // Fetch IP address on component mount
-  useEffect(() => {
-    const fetchIpAddress = async () => {
-      try {
-        const response = await axios.get("https://ipwhois.app/json/");
-        setIpAddress(response.data.ip);
-      } catch (error) {
-        console.error("Error fetching IP address:", error);
-      }
-    };
-    fetchIpAddress();
-  }, []);
 
   const [isToggle, setToggle] = useState(false);
   const [isPassword, setType] = useState(true);
@@ -45,7 +30,7 @@ const Signup = () => {
 
     const { email, firstName, lastName, password } = formData;
 
-    if (!isPasswordValid(password)) {
+    if (!isPasswordValid(formData.password)) {
       setPasswordError(
         "Password must contain at least one lowercase letter, one uppercase letter, one numeric digit, one special character, and be at least 8 characters long."
       );
@@ -61,7 +46,6 @@ const Signup = () => {
         firstName,
         lastName,
         password,
-        ipAdd: ipAddress, // Send the IP address to the server
       });
 
       // Redirect to signin page
