@@ -10,6 +10,7 @@ const Signin = () => {
     password: "",
   });
   const [isPassword, setType] = useState(true);
+  const [loading, setLoading] = useState(false); // Loading state
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -33,6 +34,8 @@ const Signin = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true); // Start loading
+
     axios
       .post("/api/signin", {
         email: formData.email,
@@ -42,12 +45,16 @@ const Signin = () => {
         const { data } = response;
 
         if (data.success) {
+          // Success, navigate to /home
+          setLoading(false); // End loading
           navigate("/home");
         } else {
+          setLoading(false); // End loading
           alert(data.message || "An unknown error occurred.");
         }
       })
       .catch((error) => {
+        setLoading(false); // End loading
         const errorMessage =
           error.response?.data?.message || "An unknown error occurred.";
         if (errorMessage === "Invalid email") {
@@ -105,7 +112,7 @@ const Signin = () => {
             type="submit"
             className="px-4 py-2 text-white rounded-md w-full button"
           >
-            Sign In
+            {loading ? "Loading..." : "Sign In"}
           </button>
         </form>
         <p
