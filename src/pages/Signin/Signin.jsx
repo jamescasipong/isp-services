@@ -34,36 +34,28 @@ const Signin = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true); // Start loading
+    setLoading(true);
+
+    console.log("Submitting form with:", formData);
 
     axios
-      .post("/api/signin", {
-        email: formData.email,
-        password: formData.password,
-      })
+      .post("/api/signin", formData)
       .then((response) => {
         const { data } = response;
 
         if (data.success) {
-          // Success, navigate to /home
-          setLoading(false); // End loading
+          setLoading(false);
           navigate("/home");
         } else {
-          setLoading(false); // End loading
+          setLoading(false);
           alert(data.message || "An unknown error occurred.");
         }
       })
       .catch((error) => {
-        setLoading(false); // End loading
+        setLoading(false);
         const errorMessage =
           error.response?.data?.message || "An unknown error occurred.";
-        if (errorMessage === "Invalid email") {
-          alert("Invalid email");
-        } else if (errorMessage === "Invalid password") {
-          alert("Invalid password");
-        } else {
-          alert(errorMessage);
-        }
+        alert(errorMessage);
       });
   };
 
