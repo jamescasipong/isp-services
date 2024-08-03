@@ -3,21 +3,19 @@ const { hashPasword, comparePassword } = require("../Helpers/auth");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const axios = require("axios");
-const { useState } = require("react");
 
 let publicIp = "";
-async function getClientIp() {
+const getIpd = async () => {
   try {
-    const response = await fetch("https://api.ipify.org?format=json");
-    publicIp = await response.json();
-    console.log(publicIp); // This will give you the client's IP address
-    return publicIp.ip;
+    const response = await axios.get("https://api.ipify.org?format=json");
+    publicIp = response.data.ip;
+    console.log(publicIp);
   } catch (error) {
-    console.error("Error fetching IP address:", error);
+    console.error("Error fetching public IP address:", error);
   }
-}
+};
 
-getClientIp();
+getIpd();
 
 exports.datas = async (req, res) => {
   try {
@@ -202,7 +200,7 @@ exports.signUp = async (req, res) => {
       lastName,
       password: hashedPassword,
       accountId: newAccountId,
-      ipAdd: publicIp.ip, // Now publicIp should be correctly updated
+      ipAdd: publicIp, // Now publicIp should be correctly updated
     });
 
     res.status(200).json(newUser);
