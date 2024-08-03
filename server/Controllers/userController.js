@@ -68,7 +68,13 @@ exports.signIn = async (req, res) => {
       { expiresIn: "1h" }
     );
 
-    res.cookie("token", token).json({ user, success: true });
+    res
+      .cookie("token", token, {
+        httpOnly: true,
+        secure: true, // Ensure secure cookies in production
+        sameSite: "None",
+      })
+      .json({ user, success: true });
   } catch (error) {
     console.error("Signin error:", error);
     res
