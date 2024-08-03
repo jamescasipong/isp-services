@@ -151,12 +151,11 @@ exports.signUp = async (req, res) => {
       return res.status(400).json({ message: "User already exists" });
     }
 
-    let accountId = "1200001";
-    // Find the user with the highest accountId
-    const lastUser = await UserAccount.findOne().sort({ accountId: -1 });
-
-    // Determine the next accountId
-    const newAccountId = lastUser ? lastUser.accountId + 1 : 1200001;
+    // Find the highest existing accountId
+    const highestAccount = await UserAccount.findOne().sort({ accountId: -1 });
+    const newAccountId = highestAccount
+      ? highestAccount.accountId + 1
+      : 1200001;
 
     const hashedPassword = await hashPasword(password);
 
@@ -167,7 +166,7 @@ exports.signUp = async (req, res) => {
       firstName,
       lastName,
       password: hashedPassword,
-      accountId,
+      accountId: newAccountId,
     });
 
     res.status(200).json(newUser);

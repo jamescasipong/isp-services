@@ -46,6 +46,9 @@ const AccHome = () => {
             Logout
           </button>
         </div>
+        <div>
+          <h1>AccountId: {data.accountId}</h1>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-4">
           <div className="bg-blue-50 p-4 rounded-lg shadow-md">
             <h2 className="text-lg font-semibold mb-2">Dashboard</h2>

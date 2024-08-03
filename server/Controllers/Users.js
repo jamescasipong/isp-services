@@ -7,7 +7,11 @@ const UserSchema = new mongoose.Schema({
   password: String,
   amount: String,
   userPlan: String,
-  accountId: String,
+  accountId: {
+    type: Number,
+    required: true, // Ensure accountId is always provided
+    unique: true, // Ensure accountId is unique
+  },
 });
 
 const UserAccount = mongoose.model("users", UserSchema);
