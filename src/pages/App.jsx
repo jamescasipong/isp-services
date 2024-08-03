@@ -12,10 +12,10 @@ import Reset from "./Reset/Reset";
 import ProtectedRoute from "./ProtectedRoute";
 import axios from "axios";
 
+const baseURL =
+  process.env.REACT_APP_API_URL || process.env.REACT_APP_API_URL_LOCAL;
 //axios.defaults.baseURL = "http://localhost:3001";
-axios.defaults.baseURL = isLocal
-  ? process.env.REACT_APP_API_URL_LOCAL
-  : process.env.REACT_APP_API_URL;
+axios.defaults.baseURL = baseURL;
 axios.defaults.withCredentials = true;
 
 function App() {
