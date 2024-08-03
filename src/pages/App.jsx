@@ -8,8 +8,7 @@ import Signup from "./Signup/Signup";
 import Signin from "./Signin/Signin";
 import AccHome from "./AccHome/AccHome";
 import Reset from "./Reset/Reset";
-import AdminHome from "./Admin/AdminHome";
-import AdminSignIn from "./Admin/AdminSignIn";
+
 import ProtectedRoute from "./ProtectedRoute";
 import axios from "axios";
 

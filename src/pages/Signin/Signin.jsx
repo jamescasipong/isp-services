@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../AuthContext";
 import { Google } from "../../assets"; // Assuming you have Google logo imported correctly
 
 const Signin = () => {
@@ -8,9 +9,17 @@ const Signin = () => {
     email: "",
     password: "",
   });
-
   const [isPassword, setType] = useState(true);
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      navigate("/home");
+    } else {
+      navigate("/signin");
+    }
+  }, [user, navigate]);
 
   const SetType = () => {
     setType(!isPassword);
