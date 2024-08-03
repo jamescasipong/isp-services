@@ -7,7 +7,7 @@ const axios = require("axios");
 let publicIp = "";
 const getIpd = async () => {
   try {
-    const response = await axios.get("https://api.ipify.org?format=json");
+    const response = await axios.get("https://ipwhois.app/json/");
     publicIp = response.data.ip;
     console.log(publicIp);
   } catch (error) {
