@@ -7,7 +7,7 @@ const useLogout = () => {
   const logout = async () => {
     try {
       await axios.post("api/logout");
-      localStorage.removeItem("authToken"); // Send a POST request to the logout endpoint
+      setUser(null); // Send a POST request to the logout endpoint
       navigate("/"); // Redirect to login page after logout
     } catch (error) {
       console.error("Logout failed:", error);

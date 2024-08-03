@@ -6,7 +6,12 @@ const ProtectedRoute = ({ children }) => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  return user ? children : navigate("/signin");
+  if (!user) {
+    navigate("/signin");
+    return null;
+  }
+
+  return children;
 };
 
 export default ProtectedRoute;
