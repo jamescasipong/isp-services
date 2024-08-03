@@ -21,6 +21,25 @@ exports.datas = async (req, res) => {
   }
 };
 
+exports.remove = async (req, res) => {
+  const { accountId } = req.params; // Get accountId from URL parameters
+
+  try {
+    // Find and delete the user by accountId
+    const result = await UserAccount.findOneAndDelete({ accountId });
+
+    if (!result) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Send success response
+    res.status(200).json({ message: "User deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    res.status(500).json({ message: "Error deleting user" });
+  }
+};
+
 exports.Id = async (req, res) => {
   try {
     // Fetch all users
@@ -40,8 +59,11 @@ exports.Id = async (req, res) => {
 
 exports.oneId = async (req, res) => {
   try {
-    // Fetch the user by lastName
-    const user = await UserAccount.findOne({ _id: req.params.id });
+    // Fetch the user by accountId and exclude the password field
+    const user = await UserAccount.findOne({
+      accountId: req.params.accountId,
+    }).select("-password -_id"); // Exclude password field
+
     console.log("Fetched User:", user); // Debugging line to see fetched user
 
     // Check if the user is found
@@ -50,7 +72,7 @@ exports.oneId = async (req, res) => {
     // Respond with the user data
     res.json(user);
   } catch (error) {
-    console.error("Error fetching user by lastName:", error);
+    console.error("Error fetching user by accountId:", error);
     res.status(500).json({ message: "Error fetching user" });
   }
 };
@@ -117,10 +139,7 @@ exports.signIn = async (req, res) => {
 
     const token = jwt.sign(
       {
-        id: user._id,
-        email: user.email,
-        firstName: user.firstName,
-        lastName: user.lastName,
+        accountId: user.accountId,
       },
       process.env.JWT_KEY,
       { expiresIn: "1h" }

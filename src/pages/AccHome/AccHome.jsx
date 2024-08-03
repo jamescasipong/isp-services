@@ -11,13 +11,13 @@ const AccHome = () => {
   const logout = useLogout();
 
   useEffect(() => {
-    if (!user || !user.id) {
+    if (!user || !user.accountId) {
       console.error("User ID is not defined");
       return;
     }
 
     axios
-      .get(`api/user/id/${user.id}`)
+      .get(`api/user/accountId/${user.accountId}/secured`)
       .then((response) => {
         setData(response.data);
       })
@@ -36,7 +36,7 @@ const AccHome = () => {
       <div className="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">
         <div className="flex flex-row">
           <h1 className="text-2xl font-bold mb-4 flex-1">
-            Welcome {user.firstName} {user.lastName}!
+            Welcome {data.firstName} {data.lastName}!
           </h1>
 
           <button
@@ -56,7 +56,7 @@ const AccHome = () => {
               onClick={() => navigate("/adminhome")}
               className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
             >
-              Go to Dashboard
+              Check out Subscribers' Data lmao!
             </button>
           </div>
           <div className="bg-blue-50 p-4 rounded-lg shadow-md">
