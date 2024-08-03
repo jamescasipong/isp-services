@@ -16,8 +16,6 @@ const Signin = () => {
   useEffect(() => {
     if (user) {
       navigate("/home");
-    } else {
-      navigate("/signin");
     }
   }, [user, navigate]);
 
