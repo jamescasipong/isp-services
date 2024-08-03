@@ -4,14 +4,14 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const axios = require("axios");
 
+let publicIp = "";
 const getIpd = async () => {
   try {
-    const response = await fetch("https://api.ipify.org?format=json");
-    const data = await response.json();
-    return data.ip; // Return the IP address
+    const response = await axios.get("https://api.ipify.org?format=json");
+    publicIp = response.data.ip;
+    console.log(publicIp);
   } catch (error) {
-    console.error("Error fetching IP:", error);
-    return null; // Return null if there's an error
+    console.error("Error fetching public IP address:", error);
   }
 };
 
@@ -178,7 +178,7 @@ exports.signUp = async (req, res) => {
 
   try {
     // Fetch public IP address
-    const ipAdd = await getIpd(); // Use the updated getIpd function
+    await getIpd();
 
     const existingUser = await UserAccount.findOne({ email });
 
@@ -200,7 +200,7 @@ exports.signUp = async (req, res) => {
       lastName,
       password: hashedPassword,
       accountId: newAccountId,
-      ipAdd: ipAdd, // Now publicIp should be correctly updated
+      ipAdd: publicIp, // Now publicIp should be correctly updated
     });
 
     res.status(200).json(newUser);
