@@ -5,7 +5,7 @@ const { authCon } = require("../Controllers/authController");
 
 const allowedOrigins = [
   "http://localhost:5173", // Local development
-  "https://optinet-official.vercel.app", // Production
+  "https://optinet-official.vercel.app",
   // Add other allowed origins if needed
 ];
 
