@@ -38,7 +38,13 @@ exports.getProfile = (req, res) => {
 };
 
 exports.logout = (req, res) => {
-  res.cookie("token", "", { maxAge: 0 });
+  res.cookie("token", "", {
+    maxAge: 0,
+    path: "/", // Specify the path if you used one when setting the cookie
+    httpOnly: true, // Optional: only accessible via HTTP(S)
+    sameSite: "None", // Optional: adjust according to your needs
+    secure: true, // Optional: only send over HTTPS (if applicable)
+  });
   res.json({ message: "Logged out successfully" });
 };
 
@@ -71,7 +77,7 @@ exports.signIn = async (req, res) => {
     res
       .cookie("token", token, {
         httpOnly: true,
-        secure: true, // Ensure secure cookies in production
+        secure: true,
         sameSite: "None",
       })
       .json({ user, success: true });
