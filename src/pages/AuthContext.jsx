@@ -20,17 +20,17 @@ export const AuthProvider = ({ children }) => {
       } catch (error) {
         console.error("Error fetching profile:", error);
         setUser(null);
-      } /*finally {
+      } finally {
         setLoading(false);
-      }*/
+      }
     };
 
     fetchUser();
   }, [navigate]);
 
-  /*if (loading) {
+  if (loading) {
     return <LoadingUI />; // Or <Button> if Button is indeed your loading indicator
-  }*/
+  }
 
   return (
     <AuthContext.Provider value={{ user, setUser }}>
