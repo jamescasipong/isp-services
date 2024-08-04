@@ -42,7 +42,7 @@ function App() {
           <Route
             path="/googlef18ca315bd3d749b.html"
             element={() => {
-              window.location.href = `${process.env.PUBLIC_URL}/verification.txt`;
+              window.location.href = `../../googlef18ca315bd3d749b.html`;
               return null;
             }}
           />
