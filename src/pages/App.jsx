@@ -38,6 +38,14 @@ function App() {
             }
           />
           <Route path="/resetpage" element={<Reset />} />
+
+          <Route
+            path="/googlef18ca315bd3d749b.html"
+            element={() => {
+              window.location.href = `${process.env.PUBLIC_URL}/verification.txt`;
+              return null;
+            }}
+          />
         </Routes>
       </AuthProvider>
     </BrowserRouter>
