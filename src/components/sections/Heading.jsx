@@ -20,6 +20,12 @@ const Heading = () => {
         wondering what iNTFibeR means, it's just some random title I've come up
         with, lmao.. You might want to contribute by giving suggestions or make
         some changes on the website, consider pulling a request on GitHub.
+        <br />
+        <br /><span className="font-medium">UPDATE:</span> I am almost done developing the website. I ended up using MongoDB
+        instead of Firebase for the database, and NodeJS with ExpressJS for the
+        backend server as well as for the REST API to fetch the data. 
+        I've also used SEO Tools to make the website searchable on Google. That’s it
+        for now; we will see about the rest.
       </p>
       <Button link={handleClick} label="Check out on GitHub"></Button>
     </div>
