@@ -123,7 +123,7 @@ const ContactSections = () => {
         </form>
       </div>
 
-      <div className="flex flex-1 justify-end">
+      <div className="hidden flex-1 justify-end sm:flex">
         <img src={hero} className="w-auto max-h-[650px]" alt="hero" />
       </div>
     </div>
