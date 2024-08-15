@@ -135,6 +135,44 @@ exports.logout = (req, res) => {
   res.json({ message: "Logged out successfully" });
 };
 
+/*exports.signIn = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const user = await UserAccount.findOne({ email });
+
+    const match = await comparePassword(password, user.password);
+
+    if (!user) {
+      return res.status(400).json({ message: "Invalid email" });
+    }
+
+    if (!match) {
+      return res.status(400).json({ message: "Invalid password" });
+    }
+
+    const token = jwt.sign(
+      {
+        accountId: user.accountId,
+      },
+      process.env.JWT_KEY,
+      { expiresIn: "1h" }
+    );
+
+    res
+      .cookie("token", token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "None",
+      })
+      .json({ user, success: true });
+  } catch (error) {
+    console.error("Signin error:", error);
+    res
+      .status(500)
+      .json({ message: "Something went wrong. Please try again later." });
+  }
+};*/
+
 exports.signIn = async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -168,6 +206,7 @@ exports.signIn = async (req, res) => {
     res.status(500).json({ message: "Something went wrong. Please try again later." });
   }
 };
+
 
 
 exports.signUp = async (req, res) => {
