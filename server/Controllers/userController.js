@@ -140,38 +140,35 @@ exports.signIn = async (req, res) => {
   try {
     const user = await UserAccount.findOne({ email });
 
-    const match = await comparePassword(password, user.password);
-
     if (!user) {
       return res.status(400).json({ message: "Invalid email" });
     }
+
+    const match = await comparePassword(password, user.password);
 
     if (!match) {
       return res.status(400).json({ message: "Invalid password" });
     }
 
     const token = jwt.sign(
-      {
-        accountId: user.accountId,
-      },
+      { accountId: user.accountId },
       process.env.JWT_KEY,
       { expiresIn: "1h" }
     );
 
-    res
-      .cookie("token", token, {
-        httpOnly: true,
-        secure: true,
-        sameSite: "None",
-      })
-      .json({ user, success: true });
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production', // Secure flag based on environment
+      sameSite: "None",
+      expires: new Date(Date.now() + 3600000), // 1 hour expiration
+      path: "/" // Specify path if necessary
+    }).json({ user, success: true });
   } catch (error) {
     console.error("Signin error:", error);
-    res
-      .status(500)
-      .json({ message: "Something went wrong. Please try again later." });
+    res.status(500).json({ message: "Something went wrong. Please try again later." });
   }
 };
+
 
 exports.signUp = async (req, res) => {
   const { email, firstName, lastName, password } = req.body;
