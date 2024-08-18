@@ -9,6 +9,9 @@ import linkedin from "./linkedin.png";
 import youtube from "./youtube.png";
 import hero from "./hero.png";
 import Google from "./Google.png";
+import arrowdown from "./arrowdown.svg";
+import user from "./user.svg";
+import bell from "./bell.svg";
 
 export {
   avatar,
@@ -22,4 +25,7 @@ export {
   youtube,
   hero,
   Google,
+  user,
+  arrowdown,
+  bell,
 };

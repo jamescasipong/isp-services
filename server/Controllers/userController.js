@@ -188,9 +188,18 @@ exports.signIn = async (req, res) => {
       return res.status(400).json({ message: "Invalid password" });
     }
 
-    const token = jwt.sign({ accountId: user.accountId }, process.env.JWT_KEY, {
-      expiresIn: "1h",
-    });
+    const token = jwt.sign(
+      {
+        accountId: user.accountId,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+      },
+      process.env.JWT_KEY,
+      {
+        expiresIn: "1h",
+      }
+    );
 
     res
       .cookie("token", token, {

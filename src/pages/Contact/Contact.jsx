@@ -1,5 +1,4 @@
 import ContactSections from "../../components/ContactSections/ContactSections";
-import { useLocation } from "react-router-dom";
 import Footer from "../../components/sections/Footer";
 import Navbar from "../../components/sections/Navbar";
 
