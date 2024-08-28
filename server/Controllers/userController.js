@@ -35,17 +35,15 @@ exports.datas = async (req, res) => {
 };
 
 exports.remove = async (req, res) => {
-  const { accountId } = req.params; // Get accountId from URL parameters
+  const { accountId } = req.params; 
 
   try {
-    // Find and delete the user by accountId
     const result = await UserAccount.findOneAndDelete({ accountId });
 
     if (!result) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    // Send success response
     res.status(200).json({ message: "User deleted successfully" });
   } catch (error) {
     console.error("Error deleting user:", error);
@@ -55,7 +53,6 @@ exports.remove = async (req, res) => {
 
 exports.Id = async (req, res) => {
   try {
-    // Fetch all users
     const users = await UserAccount.find({}, "_id"); // Only select the _id field
     console.log("Fetched User IDs:", users); // Debugging line to see fetched user IDs
 

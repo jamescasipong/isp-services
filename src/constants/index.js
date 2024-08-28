@@ -15,6 +15,9 @@ export const navLinks = [
   },
 ];
 
+
+export const navhome = []
+
 export const heading = [
   {
     id: "1",
