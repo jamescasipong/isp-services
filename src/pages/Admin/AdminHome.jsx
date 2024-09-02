@@ -5,9 +5,8 @@ import Button from "../../components/Button";
 
 const AdminHome = () => {
   const [items, setItems] = useState([]);
-  const navigate = useNavigate();
-
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     navigate("/admin"); // Redirect to admin sign-in page after logout
@@ -28,10 +27,8 @@ const AdminHome = () => {
       });
   }, []);
 
-  
-
   if (loading) {
-    return <LoadingUI></LoadingUI>;
+    return <LoadingUI />;
   }
 
   return (
@@ -57,7 +54,6 @@ const AdminHome = () => {
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Last Name
                 </th>
-
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Delete Row
                 </th>
@@ -85,7 +81,7 @@ const AdminHome = () => {
                     <Button
                       link="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
                       label="Delete"
-                    ></Button>
+                    />
                   </td>
                   {/*<td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-900">{item.password}</div>
