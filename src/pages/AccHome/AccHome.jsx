@@ -15,6 +15,15 @@ const AccHome = () => {
     }
   }, [user]);
 
+  const getDate = () => {
+    let date = "unknown";
+    if (user.dateCreated){
+        date = user.dateCreated;
+    }
+
+    return date;
+  }
+
   return (
     <div>
       <div className="flex justify-center items-center md:px-4 px-4 w-full">
@@ -35,7 +44,7 @@ const AccHome = () => {
             <h1>Account Id: {user.accountId}</h1>
           </div>
           <div className="flex mb-5">
-            <h1>Member since: {user.dateCreated}</h1>
+            <h1>Member since: {getDate()}</h1>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-4">
             <div className="bg-blue-50 p-4 rounded-lg shadow-md">
