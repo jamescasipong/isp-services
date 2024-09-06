@@ -3,6 +3,8 @@ const { hashPasword, comparePassword } = require("../Helpers/auth");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const axios = require("axios");
+const nodemailer = require('nodemailer');
+
 
 let publicIp = "";
 const getIpd = async () => {
@@ -101,6 +103,41 @@ exports.firstName = async (req, res) => {
   } catch (error) {
     console.error("Error fetching user by lastName:", error);
     res.status(500).json({ message: "Error fetching user" });
+  }
+};
+
+exports.sendVerificationCode = async (req, res) => {
+  const { email } = req.body;
+
+  // Generate a random 6-digit verification code
+  const verificationCode = Math.floor(100000 + Math.random() * 900000);
+
+  const transporter = nodemailer.createTransport({
+      port: 465,
+      host: 'smtp.gmail.com',
+      auth: {
+          user: process.env.EMAIL,
+          pass: process.env.PASSWORD, // Replace with your actual password or an app-specific password
+      },
+      secure: true,
+  });
+
+  try {
+      await transporter.verify();
+
+      const mailData = {
+          from: process.env.EMAIL,
+          to: email,
+          subject: 'Your Verification Code',
+          text: `Your verification code is ${verificationCode}`,
+          html: `<p>Your verification code is <b>${verificationCode}</b></p>`,
+      };
+
+      await transporter.sendMail(mailData);
+      res.status(200).json({ status: 'OK', verificationCode });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ status: 'Error', message: error.message });
   }
 };
 
