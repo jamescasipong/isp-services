@@ -1,4 +1,4 @@
-const UserAccount = require("./Users");
+const UserAccount = require("../Models/Users");
 const { hashPasword, comparePassword } = require("../Helpers/auth");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
@@ -111,13 +111,12 @@ exports.getProfile = (req, res) => {
     jwt.verify(token, process.env.JWT_KEY, {}, (err, user) => {
       if (err) {
         console.error("JWT verification error:", err);
-        return res.status(401).json({ message: "Invalid token" });
+        return res.status(204).json({ message: "Invalid token" });
       }
       res.json(user);
     });
   } else {
-    console.log("Token not provided");
-    res.status(401).json({ message: "No token provided" });
+    res.status(204).json({ message: "No token provided" });
   }
 };
 
@@ -191,8 +190,9 @@ exports.signIn = async (req, res) => {
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
+        dateCreated: user.dateCreated
       },
-      process.env.JWT_KEY,
+        process.env.JWT_KEY,
       {
         expiresIn: "1h",
       }
@@ -228,6 +228,18 @@ exports.signUp = async (req, res) => {
       return res.status(400).json({ message: "User already exists" });
     }
 
+    const rawDate = new Date();
+    const day = rawDate.getDate();
+    const year = rawDate.getFullYear();
+    const rawMonth = rawDate.getMonth();
+    const month = rawMonth + 1;
+
+
+    const computedMonth = month <= 9 ? "0" + month : month
+    const computedDay = day <= 9 ? "0" + day : day
+
+    const dateToday = `${year}-${computedMonth}-${computedDay}`;
+
     // Find the highest existing accountId
     const highestAccount = await UserAccount.findOne().sort({ accountId: -1 });
     const newAccountId = highestAccount
@@ -241,6 +253,7 @@ exports.signUp = async (req, res) => {
       firstName,
       lastName,
       password: hashedPassword,
+      dateCreated: dateToday,
       accountId: newAccountId,
       ipAdd: publicIp, // Now publicIp should be correctly updated
     });

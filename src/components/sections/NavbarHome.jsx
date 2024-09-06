@@ -1,10 +1,12 @@
+import React, { useState } from "react";
+import { arrowdown, bell, user } from "../../assets/index";
 import { navLinks } from "../../constants";
-import React, { useState, useContext, useEffect } from "react";
-import { user, arrowdown, bell } from "../../assets/index";
+import LogoutButton from "../LogoutButton";
+
 
 const NavbarHome = ({ userz }) => {
   const [isToggle, setToggle] = useState(false);
-
+  
   const SetToggle = () => {
     setToggle(!isToggle);
   };
@@ -47,6 +49,7 @@ const NavbarHome = ({ userz }) => {
           alt="arrow-down"
           onClick={SetToggle}
         />
+        <LogoutButton></LogoutButton>
       </div>
 
       <div className="sm:hidden">

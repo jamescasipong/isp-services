@@ -1,19 +1,19 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AuthProvider, AuthContext } from "./AuthContext";
-import HomeMain from "./HomeMain/HomeMain";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AccHome from "./AccHome/AccHome";
+import AdminHome from "./Admin/AdminHome";
+import { AuthProvider } from "./AuthContext";
 import Contact from "./Contact/Contact";
 import Features from "./Features/Features";
-import Signup from "./Signup/Signup";
-import Signin from "./Signin/Signin";
-import AdminHome from "./Admin/AdminHome";
-import AccHome from "./AccHome/AccHome";
+import HomeMain from "./HomeMain/HomeMain";
 import Reset from "./Reset/Reset";
+import Signin from "./Signin/Signin";
+import Signup from "./Signup/Signup";
 
-import ProtectedRoute from "./ProtectedRoute";
 import axios from "axios";
+import ProtectedRoute from "./ProtectedRoute";
 
-//axios.defaults.baseURL = "http://localhost:3001";
-axios.defaults.baseURL = "https://optinet-api-dev.vercel.app";
+axios.defaults.baseURL = "http://localhost:3001";
+//axios.defaults.baseURL = "https://optinet-api-dev.vercel.app";
 axios.defaults.withCredentials = true;
 
 function App() {

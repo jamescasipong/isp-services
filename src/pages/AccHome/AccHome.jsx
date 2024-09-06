@@ -1,16 +1,12 @@
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../AuthContext";
-import useLogout from "../useLogout";
-import axios from "axios";
 import NavbarHome from "../../components/sections/NavbarHome";
+import { AuthContext } from "../AuthContext";
 
 const AccHome = () => {
   const { user } = useContext(AuthContext);
-  const [data, setData] = useState({});
-  const [ipData, setIp] = useState({});
   const navigate = useNavigate();
-  const logout = useLogout();
+  
 
   useEffect(() => {
     if (!user || !user.accountId) {
@@ -36,7 +32,10 @@ const AccHome = () => {
             </h1>
           </div>
           <div className="flex mb-5">
-            <h1>AccountId: {user.accountId}</h1>
+            <h1>Account Id: {user.accountId}</h1>
+          </div>
+          <div className="flex mb-5">
+            <h1>Member since: {user.dateCreated}</h1>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-4">
             <div className="bg-blue-50 p-4 rounded-lg shadow-md">
@@ -50,11 +49,11 @@ const AccHome = () => {
             </div>
             <div className="bg-blue-50 p-4 rounded-lg shadow-md">
               <h2 className="text-lg font-semibold mb-2">My Plan</h2>
-              <p>Your Current Plan: [Plan Details]</p>
+              <p>Your Current Plan: Fiber X</p>
             </div>
             <div className="bg-blue-50 p-4 rounded-lg shadow-md">
               <h2 className="text-lg font-semibold mb-2">Amount to Pay</h2>
-              <p>$[Amount]</p>
+              <p>$1500</p>
             </div>
           </div>
         </div>

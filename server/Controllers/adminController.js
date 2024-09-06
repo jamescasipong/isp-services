@@ -1,4 +1,4 @@
-const AdminUsersAccount = require("./AdminUsers");
+const AdminUsersAccount = require("../Models/AdminUsers");
 
 exports.adminUsers = async (req, res) => {
   const { username, password } = req.body;

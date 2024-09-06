@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Google } from "../../assets";
 import axios from "axios";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Google } from "../../assets";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -25,6 +25,11 @@ const Signup = () => {
     }));
   };
 
+  const capitalizeFirstLetter = (str) => {
+    if (str.length === 0) return str; // Handle empty strings
+    return str.charAt(0).toUpperCase() + "" + str.slice(1).toLowerCase();
+};
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -36,6 +41,13 @@ const Signup = () => {
       );
       return;
     }
+
+    setFormData({
+      firstName: capitalizeFirstLetter(firstName),
+      lastName: capitalizeFirstLetter(lastName)
+    });
+
+
 
     setPasswordError("");
     setSignupError("");

@@ -1,4 +1,4 @@
-const UserAccount = require("./Users");
+const UserAccount = require("../Models/Users");
 
 const authCon = async (req, res) => {
   try {
