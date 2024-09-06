@@ -111,10 +111,10 @@ exports.sendVerificationCode = async (req, res) => {
   // Generate a random 6-digit verification code
   const verificationCode = Math.floor(100000 + Math.random() * 900000);
 
-  const user = await UserAccount.findOne({email})
+  const user = await UserAccount.findOne({ email });
 
-  if (!user){
-    return res.status(400).json({message: "Not Found!"})
+  if (!user) {
+    return res.status(400).json({ message: "Not Found!" });
   }
 
   const transporter = nodemailer.createTransport({
