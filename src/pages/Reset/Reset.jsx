@@ -41,7 +41,7 @@ const Reset = () => {
       })
       .catch((error) => {
         console.error("Error sending verification code:", error);
-        alert("Failed to send verification code. Please try again.");
+        alert("This email hasn't yet been created!!!");
       });
   };
 
@@ -49,7 +49,7 @@ const Reset = () => {
     e.preventDefault();
 
     // Step 2: Verify the entered code with the code sent by backend
-    if (inputCode === verificationCode) {
+    if (inputCode == verificationCode) {
       alert("Code verified successfully. You can reset your password now.");
       navigate("/reset-password"); // Navigate to password reset page
     } else {

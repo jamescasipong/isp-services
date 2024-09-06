@@ -3,8 +3,7 @@ const { hashPasword, comparePassword } = require("../Helpers/auth");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const axios = require("axios");
-const nodemailer = require('nodemailer');
-
+const nodemailer = require("nodemailer");
 
 let publicIp = "";
 const getIpd = async () => {
@@ -37,7 +36,7 @@ exports.datas = async (req, res) => {
 };
 
 exports.remove = async (req, res) => {
-  const { accountId } = req.params; 
+  const { accountId } = req.params;
 
   try {
     const result = await UserAccount.findOneAndDelete({ accountId });
@@ -112,32 +111,52 @@ exports.sendVerificationCode = async (req, res) => {
   // Generate a random 6-digit verification code
   const verificationCode = Math.floor(100000 + Math.random() * 900000);
 
+  const user = await UserAccount.findOne({email})
+
+  if (!user){
+    return res.status(400).json({message: "Not Found!"})
+  }
+
   const transporter = nodemailer.createTransport({
-      port: 465,
-      host: 'smtp.gmail.com',
-      auth: {
-          user: process.env.EMAIL,
-          pass: process.env.PASSWORD, // Replace with your actual password or an app-specific password
-      },
-      secure: true,
+    port: 465,
+    host: "smtp.gmail.com",
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.PASSWORD, // Replace with your actual password or an app-specific password
+    },
+    secure: true,
   });
 
   try {
-      await transporter.verify();
+    await transporter.verify();
 
-      const mailData = {
-          from: process.env.EMAIL,
-          to: email,
-          subject: 'Your Verification Code',
-          text: `Your verification code is ${verificationCode}`,
-          html: `<p>Your verification code is <b>${verificationCode}</b></p>`,
-      };
+    const mailData = {
+      from: process.env.EMAIL,
+      to: email,
+      subject: "Your Verification Code",
+      text: `Your verification code is ${verificationCode}`,
+      html: `
+    <div style="font-family: Arial, sans-serif; padding: 20px; background-color: #f4f4f4;">
+      <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; padding: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+        <h2 style="color: #333333;">Password Reset</h2>
+        <p style="font-size: 16px; color: #666666;">Hi,</p>
+        <p style="font-size: 16px; color: #666666;">You requested to reset your password. Use the verification code below:</p>
+        <div style="text-align: center; margin: 20px 0;">
+          <span style="font-size: 24px; color: #333333; font-weight: bold;">${verificationCode}</span>
+        </div>
+        <p style="font-size: 16px; color: #666666;">If you didn't request this, you can ignore this email.</p>
+        <p style="font-size: 16px; color: #666666;">Thank you,</p>
+        <p style="font-size: 16px; color: #666666;">The Optinet Team</p>
+      </div>
+    </div>
+  `,
+    };
 
-      await transporter.sendMail(mailData);
-      res.status(200).json({ status: 'OK', verificationCode });
+    await transporter.sendMail(mailData);
+    res.status(200).json({ status: "OK", verificationCode });
   } catch (error) {
-      console.error(error);
-      res.status(500).json({ status: 'Error', message: error.message });
+    console.error(error);
+    res.status(500).json({ status: "Error", message: error.message });
   }
 };
 
@@ -227,9 +246,9 @@ exports.signIn = async (req, res) => {
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
-        dateCreated: user.dateCreated
+        dateCreated: user.dateCreated,
       },
-        process.env.JWT_KEY,
+      process.env.JWT_KEY,
       {
         expiresIn: "1h",
       }
@@ -271,9 +290,8 @@ exports.signUp = async (req, res) => {
     const rawMonth = rawDate.getMonth();
     const month = rawMonth + 1;
 
-
-    const computedMonth = month <= 9 ? "0" + month : month
-    const computedDay = day <= 9 ? "0" + day : day
+    const computedMonth = month <= 9 ? "0" + month : month;
+    const computedDay = day <= 9 ? "0" + day : day;
 
     const dateToday = `${year}-${computedMonth}-${computedDay}`;
 
