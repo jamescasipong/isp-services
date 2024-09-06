@@ -28,7 +28,7 @@ const Signup = () => {
   const capitalizeFirstLetter = (str) => {
     if (str.length === 0) return str; // Handle empty strings
     return str.charAt(0).toUpperCase() + "" + str.slice(1).toLowerCase();
-};
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,10 +44,8 @@ const Signup = () => {
 
     setFormData({
       firstName: capitalizeFirstLetter(firstName),
-      lastName: capitalizeFirstLetter(lastName)
+      lastName: capitalizeFirstLetter(lastName),
     });
-
-
 
     setPasswordError("");
     setSignupError("");
