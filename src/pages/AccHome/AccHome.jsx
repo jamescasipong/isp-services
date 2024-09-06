@@ -16,7 +16,7 @@ const AccHome = () => {
   }, [user]);
 
   const getDate = () => {
-    let date = "unknown";
+    let date = "Unknown";
     if (user.dateCreated){
         date = user.dateCreated;
     }
