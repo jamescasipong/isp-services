@@ -3,11 +3,15 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const config = require("./Config/config");
 require("dotenv").config();
+require("dotenv").config({ path: "./.env" });
+const app = express();
 //const axios = require("axios");
 
-require("dotenv").config({ path: "./.env" });
 
-const app = express();
+app.use((req, res) => {
+  res.status(404);
+})
+
 const adminRoute = require("./Routes/adminRoute");
 const userRoute = require("./Routes/userRoute");
 const cookieParser = require("cookie-parser");
