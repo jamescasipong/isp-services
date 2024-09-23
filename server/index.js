@@ -8,9 +8,7 @@ const app = express();
 //const axios = require("axios");
 
 
-app.use((req, res) => {
-  res.status(404);
-})
+
 
 const adminRoute = require("./Routes/adminRoute");
 const userRoute = require("./Routes/userRoute");

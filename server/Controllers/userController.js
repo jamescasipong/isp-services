@@ -5,18 +5,6 @@ require("dotenv").config();
 const axios = require("axios");
 const nodemailer = require("nodemailer");
 
-let publicIp = "";
-const getIpd = async () => {
-  try {
-    const response = await axios.get("https://api.ipify.org?format=json");
-    publicIp = response.data.ip;
-    console.log(publicIp);
-  } catch (error) {
-    console.error("Error fetching public IP address:", error);
-  }
-};
-
-getIpd();
 
 exports.datas = async (req, res) => {
   try {

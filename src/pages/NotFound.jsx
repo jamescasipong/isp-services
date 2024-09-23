@@ -10,19 +10,19 @@ const NotFound = () => {
                 <div className="mt-6">
                     <a 
                         href="/" 
-                        className="inline-block px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                        className="inline-block px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
                     >
                         Go to Homepage
                     </a>
                 </div>
-                <div className="mt-4">
+                {/*<div className="mt-4">
                     <p className="text-sm text-gray-500">Or try searching for what you need:</p>
                     <input 
                         type="text" 
                         placeholder="Search..." 
                         className="mt-2 p-2 border rounded-md w-full max-w-xs mx-auto"
                     />
-                </div>
+                </div>*/}
             </div>
         </div>
     );
