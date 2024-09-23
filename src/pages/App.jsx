@@ -2,9 +2,11 @@ import axios from "axios";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AccHome from "./AccHome/AccHome";
 import AdminHome from "./Admin/AdminHome";
+import { AuthProvider } from "./AuthContext";
 import Contact from "./Contact/Contact";
 import Features from "./Features/Features";
 import HomeMain from "./HomeMain/HomeMain";
+import NotFound from "./NotFound";
 import ProtectedRoute from "./ProtectedRoute";
 import Reset from "./Reset/Reset";
 import Signin from "./Signin/Signin";
@@ -17,6 +19,7 @@ axios.defaults.withCredentials = true;
 function App() {
   return (
     <BrowserRouter>
+      <AuthProvider>
         <Routes>
           <Route index element={<HomeMain />} />
           <Route path="/features" element={<Features />} />
@@ -35,8 +38,10 @@ function App() {
             }
           />
           <Route path="/resetpage" element={<Reset />} />
+          <Route path="*" element={<NotFound />} />
 
         </Routes>
+      </AuthProvider>
     </BrowserRouter>
   );
 }
