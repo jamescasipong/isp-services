@@ -3,10 +3,9 @@ import { arrowdown, bell, user } from "../../assets/index";
 import { navLinks } from "../../constants";
 import LogoutButton from "../LogoutButton";
 
-
 const NavbarHome = ({ userz }) => {
   const [isToggle, setToggle] = useState(false);
-  
+
   const SetToggle = () => {
     setToggle(!isToggle);
   };

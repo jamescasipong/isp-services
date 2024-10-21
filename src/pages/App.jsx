@@ -39,7 +39,6 @@ function App() {
           />
           <Route path="/resetpage" element={<Reset />} />
           <Route path="*" element={<NotFound />} />
-
         </Routes>
       </AuthProvider>
     </BrowserRouter>

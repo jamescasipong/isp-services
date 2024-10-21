@@ -47,6 +47,7 @@ const Signin = () => {
         if (data.success) {
           // Success, navigate to /home
           setLoading(false); // End loading
+          alert("Sign in successful!");
           navigate("/home");
         } else {
           setLoading(false); // End loading
