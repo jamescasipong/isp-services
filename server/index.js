@@ -7,9 +7,6 @@ require("dotenv").config({ path: "./.env" });
 const app = express();
 //const axios = require("axios");
 
-
-
-
 const adminRoute = require("./Routes/adminRoute");
 const userRoute = require("./Routes/userRoute");
 const cookieParser = require("cookie-parser");

@@ -51,15 +51,31 @@ const Signup = () => {
     setSignupError("");
 
     try {
-      await axios.post("/api/user/signup", {
+      const signup = await axios.post("/api/user/signup", {
         email,
         firstName,
         lastName,
         password,
       });
 
+      if (signup.data.message === "User created successfully") {
+        // Clear form data
+        setFormData({
+          email: "",
+          firstName: "",
+          lastName: "",
+          password: "",
+        });
+
+        // Show success popup
+        alert("Account created successfully!");
+
+        // Navigate to signin page after 3 seconds
+        setTimeout(() => {
+          navigate("/signin");
+        }, 3000);
+      }
       // Redirect to signin page
-      navigate("/signin");
     } catch (err) {
       setSignupError(err.response?.data?.message || "An error occurred");
     }
