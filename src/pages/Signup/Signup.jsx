@@ -70,10 +70,7 @@ const Signup = () => {
         // Show success popup
         alert("Account created successfully!");
 
-        // Navigate to signin page after 3 seconds
-        setTimeout(() => {
-          navigate("/signin");
-        }, 3000);
+        navigate("/signin");
       }
       // Redirect to signin page
     } catch (err) {
