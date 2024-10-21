@@ -297,7 +297,6 @@ exports.signUp = async (req, res) => {
       dateCreated: dateToday,
       accountId: newAccountId,
     });
-
     res.status(200).json({ message: "User created successfully", newUser });
   } catch (error) {
     console.error("Signup error:", error);
