@@ -6,7 +6,6 @@ import { AuthContext } from "../AuthContext";
 const AccHome = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-  
 
   useEffect(() => {
     if (!user || !user.accountId) {
@@ -17,12 +16,12 @@ const AccHome = () => {
 
   const getDate = () => {
     let date = "Unknown";
-    if (user.dateCreated){
-        date = user.dateCreated;
+    if (user.dateCreated) {
+      date = user.dateCreated;
     }
 
     return date;
-  }
+  };
 
   return (
     <div>

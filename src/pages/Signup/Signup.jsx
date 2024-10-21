@@ -51,7 +51,7 @@ const Signup = () => {
     setSignupError("");
 
     try {
-      await axios.post("/api/signup", {
+      await axios.post("/api/user/signup", {
         email,
         firstName,
         lastName,

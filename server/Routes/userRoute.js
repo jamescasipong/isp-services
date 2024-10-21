@@ -14,16 +14,14 @@ const {
 } = require("../Controllers/userController");
 
 router.post("/signin", signIn);
-
-
 router.get("/user", datas);
 router.get("/user/id", Id);
 router.get("/user/accountId/:accountId/secured", oneId);
 router.get("/user/firstname/:firstname", firstName);
 router.delete("/user/accountId/:accountId", remove);
-router.post("/sendVerificationCode", sendVerificationCode)
+router.post("/sendVerificationCode", sendVerificationCode);
 
-router.post("/signup", signUp);
+router.post("/user/signup", signUp);
 
 router.post("/logout", logout);
 

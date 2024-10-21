@@ -5,7 +5,6 @@ require("dotenv").config();
 const axios = require("axios");
 const nodemailer = require("nodemailer");
 
-
 exports.datas = async (req, res) => {
   try {
     const users = await UserAccount.find();
@@ -264,7 +263,6 @@ exports.signUp = async (req, res) => {
 
   try {
     // Fetch public IP address
-    await getIpd();
 
     const existingUser = await UserAccount.findOne({ email });
 
@@ -298,7 +296,6 @@ exports.signUp = async (req, res) => {
       password: hashedPassword,
       dateCreated: dateToday,
       accountId: newAccountId,
-      ipAdd: publicIp, // Now publicIp should be correctly updated
     });
 
     res.status(200).json(newUser);
