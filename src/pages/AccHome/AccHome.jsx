@@ -1,11 +1,36 @@
-import { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import NavbarHome from "../../components/sections/NavbarHome";
-import { AuthContext } from "../AuthContext";
-import { Google } from "../../assets";
-import { useState } from "react";
 import axios from "axios";
+import {
+  Bell,
+  CreditCard,
+  Home,
+  LogOut,
+  Package,
+  PieChart,
+  Settings,
+  User,
+  Wifi,
+} from "lucide-react";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import LoadingUI from "../../components/LoadingUI";
+import { Avatar, AvatarFallback, AvatarImage } from "../../components/ui/avatar";
+import { Button } from "../../components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../../components/ui/card";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../../components/ui/dropdown-menu";
+import { Progress } from "../../components/ui/progress";
+import { AuthContext } from "../AuthContext";
 
 const AccHome = () => {
   const { user } = useContext(AuthContext);
@@ -53,128 +78,184 @@ const AccHome = () => {
   }
 
   return (
-    <div>
-      <nav className="bg-white shadow-sm border-b-2">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <h1 className="font-medium text-[20px]">Optinet</h1>
-            </div>
-            <div className="flex items-center">
-              <button className="p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                <span className="sr-only">View notifications</span>
-                <svg
-                  className="h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                  />
-                </svg>
-              </button>
-              <div className="ml-3 relative">
-                <div>
-                  <button
-                    className="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    id="user-menu-button"
-                    onClick={() => {
-                      setToggle((prev) => !prev);
-                    }}
-                    aria-expanded="false"
-                    aria-haspopup="true"
-                  >
-                    <span className="sr-only">Open user menu</span>
-                    <img
-                      className="h-8 w-8 rounded-full"
-                      src={Google}
-                      alt="Profile"
-                    />
-                  </button>
+    <div className="flex h-screen bg-white">
+      {/* Sidebar */}
+      <aside className="w-64 bg-red-600 text-white p-6">
+        <div className="flex items-center mb-8">
+          <Wifi className="h-8 w-8 mr-2" />
+          <h1 className="text-2xl font-bold">OptiNET</h1>
+        </div>
+        <nav>
+          <ul className="space-y-2">
+            <li>
+              <a
+                href="#"
+                className="flex items-center p-2 rounded-lg hover:bg-red-700"
+              >
+                <Home className="h-5 w-5 mr-3" />
+                Dashboard
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="flex items-center p-2 rounded-lg hover:bg-red-700"
+              >
+                <CreditCard className="h-5 w-5 mr-3" />
+                Billing
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="flex items-center p-2 rounded-lg hover:bg-red-700"
+              >
+                <Package className="h-5 w-5 mr-3" />
+                Plans
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="flex items-center p-2 rounded-lg hover:bg-red-700"
+              >
+                <PieChart className="h-5 w-5 mr-3" />
+                Usage
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="flex items-center p-2 rounded-lg hover:bg-red-700"
+              >
+                <Settings className="h-5 w-5 mr-3" />
+                Settings
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      {/* Main Content */}
+      <main className="flex-1 p-8 overflow-auto">
+        {/* Header */}
+        <header className="flex justify-between items-center mb-8">
+          <h2 className="text-2xl font-semibold text-gray-800">
+            Welcome back, {user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1)}!
+          </h2>
+          <div className="flex items-center gap-2 justify-center">
+            <Button variant="outline" className="border-0" size="icon">
+              <Bell className="h-7 w-7" />
+            </Button>
+            <DropdownMenu className="w-full">
+              <DropdownMenuTrigger asChild>
+                <Avatar>
+                  <AvatarImage className="w-12 h-12" src="https://avatars.githubusercontent.com/u/144509235?v=4" />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem className="hover:bg-slate-100 cursor-pointer">
+                  <User className="mr-2 h-4 w-4" />
+                  <span>Profile</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-slate-100 cursor-pointer">
+                  <Settings className="mr-2 h-4 w-4" />
+                  <span>Settings</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={handleLogout} className="hover:bg-slate-100 cursor-pointer">
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>Logout</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        </header>
+
+        {/* Dashboard Content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Monthly Bill Card */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Monthly Bill</CardTitle>
+              <CardDescription>Due on May 1, 2024</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="text-3xl font-bold text-red-600">$59.99</div>
+              <p className="text-sm text-green-600 mt-2">
+                Paid on April 25, 2024
+              </p>
+            </CardContent>
+            <CardFooter>
+              <Button className="w-full bg-red-600 hover:bg-red-700 text-white">
+                View Bill Details
+              </Button>
+            </CardFooter>
+          </Card>
+
+          {/* Current Plan Card */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Current Plan</CardTitle>
+              <CardDescription>High-Speed Internet</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-semibold mb-2">100 Mbps</div>
+              <Progress value={75} className="h-2 mb-2" />
+              <p className="text-sm text-gray-600">75% of your data used</p>
+            </CardContent>
+            <CardFooter>
+              <Button variant="outline" className="w-full">
+                Manage Plan
+              </Button>
+            </CardFooter>
+          </Card>
+
+          {/* Upgrade Plan Card */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Upgrade Your Plan</CardTitle>
+              <CardDescription>Get more speed and data</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <span>250 Mbps</span>
+                  <span className="font-semibold">$79.99/mo</span>
                 </div>
-                <div
-                  className={`origin-top-right absolute ${
-                    isToggle ? "" : "hidden"
-                  } right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none`}
-                  role="menu"
-                  aria-orientation="vertical"
-                  aria-labelledby="user-menu-button"
-                  tabIndex="-1"
-                >
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm hover:bg-slate-100 text-gray-700"
-                    role="menuitem"
-                    tabIndex="-1"
-                    id="user-menu-item-0"
-                  >
-                    Your Profile
-                  </a>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm hover:bg-slate-100 text-gray-700"
-                    role="menuitem"
-                    tabIndex="-1"
-                    id="user-menu-item-1"
-                  >
-                    Settings
-                  </a>
-                  <a
-                    href="#"
-                    className="block hover:bg-slate-100 px-4 py-2 text-sm text-gray-700"
-                    role="menuitem"
-                    onClick={handleLogout}
-                    tabIndex="-1"
-                    id="user-menu-item-2"
-                  >
-                    Sign out
-                  </a>
+                <div className="flex justify-between items-center">
+                  <span>500 Mbps</span>
+                  <span className="font-semibold">$99.99/mo</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span>1 Gbps</span>
+                  <span className="font-semibold">$129.99/mo</span>
                 </div>
               </div>
-            </div>
-          </div>
+            </CardContent>
+            <CardFooter>
+              <Button className="w-full bg-red-600 hover:bg-red-700 text-white">
+                Upgrade Now
+              </Button>
+            </CardFooter>
+          </Card>
+
+          {/* Usage Statistics Card */}
+          <Card className="md:col-span-2 lg:col-span-3">
+            <CardHeader>
+              <CardTitle>Usage Statistics</CardTitle>
+              <CardDescription>
+                Your internet usage over the past month
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="h-[200px] bg-gray-100 rounded-md flex items-center justify-center">
+                <span className="text-gray-500">Usage graph placeholder</span>
+              </div>
+            </CardContent>
+          </Card>
         </div>
-      </nav>
-      <div className="min-h-screen mt-5 px-2">
-        <div className="max-w-6xl mx-auto bg-white p-6 rounded-lg border shadow-md">
-          <div className="flex flex-row">
-            <h1 className="text-2xl font-bold mb-4 flex-1">
-              Hi {user.firstName} {user.lastName}!
-            </h1>
-          </div>
-          <div className="flex mb-5">
-            <h1>Account Id: {user.accountId}</h1>
-          </div>
-          <div className="flex mb-5">
-            <h1>Member since: {getDate()}</h1>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-4">
-            <div className="bg-blue-50 p-4 rounded-lg shadow-md border">
-              <h2 className="text-lg font-semibold mb-2">Dashboard</h2>
-              <button
-                onClick={() => navigate("/adminhome")}
-                className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-              >
-                Check out Subscribers' Data lmao!
-              </button>
-            </div>
-            <div className="bg-blue-50 p-4 rounded-lg shadow-md border">
-              <h2 className="text-lg font-semibold mb-2">My Plan</h2>
-              <p>Your Current Plan: Fiber X</p>
-            </div>
-            <div className="bg-blue-50 p-4 rounded-lg shadow-md border">
-              <h2 className="text-lg font-semibold mb-2">Amount to Pay</h2>
-              <p>$1500</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      </main>
     </div>
   );
 };
