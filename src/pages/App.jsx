@@ -16,32 +16,45 @@ import Signup from "./Signup/Signup";
 axios.defaults.baseURL = "https://optinet-api-dev.vercel.app";
 axios.defaults.withCredentials = true;
 
+import { Helmet } from "react-helmet";
+
 function App() {
   return (
-    <BrowserRouter>
-      <AuthProvider>
-        <Routes>
-          <Route index element={<HomeMain />} />
-          <Route path="/features" element={<Features />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/signup" element={<Signup />} />
-
-          <Route path="/adminhome" element={<AdminHome />} />
-
-          <Route path="/signin" element={<Signin />} />
-          <Route
-            path="/home"
-            element={
-              <ProtectedRoute>
-                <AccHome />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="/resetpage" element={<Reset />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </AuthProvider>
-    </BrowserRouter>
+    <>
+      <Helmet>
+        <title>Optinet ISP Services</title>
+        <meta
+          name="description"
+          content="Optinet ISP Services offers the best internet solutions for your home and business in the Philippines."
+        />
+        <meta
+          name="keywords"
+          content="ISP, Internet Service Provider, Optinet, Internet Solutions, Home Internet, Business Internet, Philippines"
+        />
+      </Helmet>
+      <BrowserRouter>
+        <AuthProvider>
+          <Routes>
+            <Route index element={<HomeMain />} />
+            <Route path="/features" element={<Features />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/adminhome" element={<AdminHome />} />
+            <Route path="/signin" element={<Signin />} />
+            <Route
+              path="/home"
+              element={
+                <ProtectedRoute>
+                  <AccHome />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/resetpage" element={<Reset />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </AuthProvider>
+      </BrowserRouter>
+    </>
   );
 }
 
